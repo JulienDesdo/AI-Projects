@@ -1,4 +1,6 @@
 # AI-Projects
+!!!! DATA FILES FROM KAGGLE WILL ARRIVE SOON on HUGGING FACE !!!!
+
 
 Projets d’IA couvrant l’optimisation, Kaggle, le machine learning, le deep learning et autres expérimentations.
 
@@ -11,7 +13,7 @@ Chaque projet contient soit un **README explicatif**, soit un **rapport PDF**, s
 
 ## 📁 Structure du dépôt
 
-```bash
+```
 AI-Projects/
 ├── audio/                  ← Reconnaissance de sons
 ├── kaggle/                 ← Compétitions, datasets publics
@@ -19,7 +21,7 @@ AI-Projects/
 ├── simulation/             ← Environnements interactifs, apprentissage par renforcement
 ├── theory/                 ← Projets mathématiques, académiques, optimisations
 └── README.md
-
+```
 --- 
 
 ## 🚀 Résumé des projets
