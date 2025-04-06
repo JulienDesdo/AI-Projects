@@ -17,9 +17,11 @@ Ce projet applique des modèles de Deep Learning (RNN de type LSTM et GRU) à la
 ## 📂 Fichiers
 
 - `notebooks/market_forecasting.ipynb` : notebook principal (anciennement `markets_alpha-vantage.ipynb`)
-- `data/CA.PA_1D.csv` : exemple de données téléchargées (ici Carrefour)
-- `inputs/companies_list.txt` : liste des entreprises disponibles avec nom, secteur, etc.
+- `data/CA.PA_1D.csv` : exemple de données téléchargées (ici Carrefour) 🔗
+- `inputs/companies_list.txt` : liste des entreprises disponibles avec nom, secteur, etc. 🔗
 - `alpha_api_key.txt` : votre clé API personnelle (à ne pas versionner)
+
+🔗 Données [ici](https://huggingface.co/datasets/0wI/market-forecasting)
 
 ## ⚙️ Dépendances
 
