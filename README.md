@@ -46,8 +46,8 @@ AI-Projects/
 ## Théorie & optimisation
 
 ### 🧠 MLP Optimizer Comparison (Adam vs SGD)
-- Implémentation manuelle d’un MLP (forward et backpropagation)
-- Comparaison des performances d’Adam vs SGD sur des données synthétiques
+- Implémentation manuelle d’un MLP (forward et backpropagation) incluant un algorithme d'optimisation ADAM. 
+- Comparaison des performances d’Adam vs SGD sur des données synthétiques.
 - 📁 [Voir le projet](./theory/ADAM-MLP-Implementation)
 
 ### 📎 SVM linéaires & non-linéaires
@@ -59,7 +59,7 @@ AI-Projects/
 
 ### 🧮 Levenberg-Marquardt Optimisation
 - Implémentation de l’algorithme de Levenberg-Marquardt pour la régression non linéaire
-- Comparaison sur différents jeux de données (bonus + exos) avec visualisations
+- Comparaison avec d'autres algorithmes
 - 📊 [Voir le dossier](./theory/Levenberg-Marquardt)
 
 ### 🎲 Monte Carlo & Quasi-Monte Carlo
