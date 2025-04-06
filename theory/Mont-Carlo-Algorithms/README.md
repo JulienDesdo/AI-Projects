@@ -40,8 +40,9 @@ On implémente un algorithme d’**optimisation inspiré du comportement de colo
 
 Les résultats sont visibles via :
 
-- 🎥 [Animation maximum](./evolution_maximum.avi)
-- 🎥 [Animation minimum](./evolution_minimum.avi)
+| 🎥 Animation Maximum | 🎥 Animation minimum |
+|-------------------|-------------------|
+| ![](./evolution_maximum.gif) | ![](./evolution_minimum.gif) |
 
 Et visualisés en 3D :
 
