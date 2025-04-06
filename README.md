@@ -1,6 +1,4 @@
 # AI-Projects
-!!!! DATA FILES FROM KAGGLE WILL ARRIVE SOON on HUGGING FACE !!!!
-
 
 Projets d’IA couvrant l’optimisation, Kaggle, le machine learning, le deep learning et autres expérimentations.
 
