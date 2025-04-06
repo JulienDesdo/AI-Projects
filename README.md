@@ -27,11 +27,11 @@ AI-Projects/
 ## 🚀 Résumé des projets
  ### Kaggle
 
-- [`Titanic`]() — Prédiction de survie, pipeline ML de base
+- [`Titanic`](./kaggle/titanic_survival) — Prédiction de survie, pipeline ML de base
 
-- [`Crime Classification`]() — Deep learning vs XGBoost sur données spatio-temporelles
+- [`Crime Classification`](./kaggle/sf_crime_classification) — Deep learning vs XGBoost sur données spatio-temporelles
 
-- [`Market Forecast`]() — Prédiction de séries financières via LSTM & GRU
+- [`Market Forecast`](./kaggle/market_forecasting) — Prédiction de séries financières via LSTM & GRU
 
 
 --- 
@@ -41,7 +41,7 @@ AI-Projects/
 ### 🚗 Car DQN Learning
 - Environnement Pygame + DQN avec StableBaselines3
 - Contrôle d’un véhicule sur différentes pistes
-- 🎮 [Voir le dossier](./carsDQLN)
+- 🎮 [Voir le dossier](./simulation/carsDQLN)
 
 
 
@@ -50,24 +50,25 @@ AI-Projects/
 ### 🧠 MLP Optimizer Comparison (Adam vs SGD)
 - Implémentation manuelle d’un MLP (forward et backpropagation)
 - Comparaison des performances d’Adam vs SGD sur des données synthétiques
-- 📁 [Voir le projet](./adam-mlp)
+- 📁 [Voir le projet](./theory/ADAM-MLP-Implementation)
 
 ### 📎 SVM linéaires & non-linéaires
 - Implémentations *bas niveau* en MATLAB (sans boîte noire)
 - Étude progressive : primal, dual, marge souple, noyaux *gaussien* et *polynomial*
 - 🔍 Analyse de l’impact des hyperparamètres *(C, σ, degré du noyau)*
-- 📁 [Voir le dossier](./SVM)
+- 📁 [Voir le dossier](./theory/SVM%20-%20Support%20Vector%20Machine)
+
 
 ### 🧮 Levenberg-Marquardt Optimisation
 - Implémentation de l’algorithme de Levenberg-Marquardt pour la régression non linéaire
 - Comparaison sur différents jeux de données (bonus + exos) avec visualisations
-- 📊 [Voir le dossier](./levenberg_marquardt)
+- 📊 [Voir le dossier](./Levenberg-Marquardt)
 
 ### 🎲 Monte Carlo & Quasi-Monte Carlo
 
 - Approches numériques d’intégration, d’estimation et d’optimisation par échantillonnage
 - Visualisation des effets de clustering, méthodes QMC, algorithmes de type mimétique
-- 📊 [Voir le dossier](./Quasi-Monte Carlo)
+- 📊 [Voir le dossier](./Mont-Carlo-Algorithms)
 
 <!--
 ---
