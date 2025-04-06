@@ -23,7 +23,7 @@ AI-Projects/
 --- 
 
 ## 🚀 Résumé des projets
- ### Kaggle
+ ### [Kaggle](./kaggle)
 
 - [`Titanic`](./kaggle/titanic_survival) — Prédiction de survie, pipeline ML de base
 
