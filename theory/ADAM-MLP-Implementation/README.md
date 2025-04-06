@@ -1,6 +1,7 @@
 # 🧠 Comparaison d’Optimiseurs : MLP avec Adam vs SGD
 
 Ce projet implémente un MLP **entièrement codé à la main** (forward et backpropagation) pour comparer deux stratégies d’optimisation : **SGD** (Stochastic Gradient Descent) et **Adam**.
+Les optimiseurs modernes comme ADAM, Adagrad, RMSprop ajustent dynamiquement le taux d'apprentissage pour améliorer la convergence. 
 
 🎯 **Objectif** :  
 Comprendre l’influence de l’optimiseur sur l’apprentissage d’un réseau de neurones, en particulier la vitesse et la qualité de convergence.
