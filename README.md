@@ -62,13 +62,13 @@ AI-Projects/
 ### 🧮 Levenberg-Marquardt Optimisation
 - Implémentation de l’algorithme de Levenberg-Marquardt pour la régression non linéaire
 - Comparaison sur différents jeux de données (bonus + exos) avec visualisations
-- 📊 [Voir le dossier](./Levenberg-Marquardt)
+- 📊 [Voir le dossier](./theory/Levenberg-Marquardt)
 
 ### 🎲 Monte Carlo & Quasi-Monte Carlo
 
 - Approches numériques d’intégration, d’estimation et d’optimisation par échantillonnage
 - Visualisation des effets de clustering, méthodes QMC, algorithmes de type mimétique
-- 📊 [Voir le dossier](./Mont-Carlo-Algorithms)
+- 📊 [Voir le dossier](./theory/Mont-Carlo-Algorithms)
 
 <!--
 ---
