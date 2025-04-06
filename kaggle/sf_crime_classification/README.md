@@ -21,6 +21,6 @@ Les notebooks correspondants sont disponibles dans le dossier racine du projet.
 ## 📦 Données
 
 Les données proviennent du [`Kaggle Competition San Fransisco Crime Classification`](https://www.kaggle.com/competitions/sf-crime/submissions#).
-
+Les datasets (raw & processed) sont disponibles sur mon compte [huggingface](https://huggingface.co/datasets/0wI/sf-crime-classification).
 
 
