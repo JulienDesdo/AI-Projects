@@ -1,52 +1,46 @@
-# 📈 Optimisation avec Levenberg-Marquardt
+# 📈 Optimisation Numérique avec Levenberg-Marquardt
 
-Ce projet propose une implémentation complète de l’algorithme **Levenberg-Marquardt**, un compromis entre la descente de gradient et la méthode de Gauss-Newton, appliqué à des problèmes de régression non linéaire.
+Ce projet met en œuvre l’algorithme **Levenberg-Marquardt**, algorithme d'optimisation. Il s'agit peu ou prou d'un algorithme type Gradient, Newton... si ce n'est qu'il plus performant. 
+Ce type d'algorithme sert en IA pour ajuster les paramètres d’un modèle afin de minimiser une fonction de coût, notamment dans l’apprentissage supervisé.
 
 ## 🎯 Objectifs
 
-- Implémenter une optimisation robuste sur des fonctions non linéaires
-- Comprendre le rôle du paramètre de régularisation (lambda)
-- Observer l’évolution de la convergence et la sensibilité aux points initiaux
-- Visualiser l’impact des différentes métriques d’erreur
+- Implémentation de Levenberg-Marquardt avec jacobienne analytique
+- Étude de la sensibilité aux conditions initiales et au bruit
+- Exploration de l’impact du paramètre de régularisation (`mu`)
+- Comparaison avec les méthodes de descente de gradient
 
 > 🔍 Basé sur un **TP académique**, reproduit et enrichi dans un cadre personnel. **Les consignes initiales ne sont pas publiées pour respecter la confidentialité des contenus pédagogiques.**
 
 ---
 
-## 🧪 Contenu
+## 🧪 Expériences
 
-Le projet est structuré autour de 3 parties principales, chacune testant un cas différent d’optimisation :
+### 1. Modèle à 4 paramètres
 
-### 1. 📐 Ajustement linéaire complexe (EXO 1)
-Courbe expérimentale à modéliser à l’aide de fonctions exponentielles. Étude des performances selon différents critères.
+- Modèle : `y = x3 * exp(x1 * t) + x4 * exp(x2 * t)`
+- Analyse des résultats selon différentes conditions initiales et niveaux de bruit
+- Étude des minima locaux et du comportement de la convergence
 
-### 2. 🧬 Ajustement sigmoïde (EXO 2)
-Régression sur une fonction sigmoïde. Analyse de la sensibilité au point initial.
+### 2. Modèle à 10 paramètres
 
-### 3. 🔧 Fonction simple (BONUS)
-Régression sur une fonction de type sinus, avec contrôle des paramètres de régularisation. Visualisation de la convergence et des résidus.
+- Problème plus complexe avec un espace de recherche plus large
+- Ajustement du nombre d’itérations et contrôle renforcé des paramètres
 
----
+### Bonus : Méthodes du gradient
 
-## 📁 Fichiers clés
-
-- `BONUS Gradient`, `Exerice 1` et `Exercice 2` pour le code. 
-- `Document Explicatif Optimisation.pdf` : rapport expliquant les étapes, le raisonnement et les résultats
-- `TPfinal_app.pdf` : support original non publié dans le dépôt public
+- Comparaison directe avec la descente de gradient
+- Observation d'une moins bonne robustesse face aux minima locaux
 
 ---
 
-## ✅ Résultats observés
+## 📁 Fichiers
 
-- Levenberg-Marquardt offre une **très bonne stabilité** même sur des formes complexes
-- Le choix du lambda initial et de son ajustement est **déterminant**
-- Les erreurs (MSE, MAE...) peuvent donner des indications complémentaires selon la forme de la fonction cible
-
----
-
-## 🧠 Ce que j’en retiens
-
-Un excellent TP pour mieux appréhender le lien entre dérivées, ajustement local, et comportement global de l’optimisation. Il permet aussi de mieux sentir les limites des approches purement descendantes ou purement newtoniennes.
+- Scripts Matlab (`Exercice 1`, `Exercice 2`, `dirLM.m`, etc.)
+- `Document Explicatif Optimisation.pdf` : rapport détaillé
 
 ---
 
+## 🧠 En résumé
+
+Le TP montre bien l’intérêt de Levenberg-Marquardt comme méthode hybride efficace entre gradient et Gauss-Newton, tout en révélant ses limites face aux mauvaises conditions initiales ou à des problèmes trop bruités.
