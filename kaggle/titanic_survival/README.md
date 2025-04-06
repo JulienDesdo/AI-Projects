@@ -5,9 +5,10 @@ Ce projet explore la compétition classique *Titanic: Machine Learning from Disa
 ## 📦 Contenu
 
 - `Titanic_preprocessing.ipynb` : Nettoyage, feature engineering (Cabin, Ticket, Embarked, etc.), encodage.
-- `Titanic_TrainingTest.ipynb` : Entraînement d’un modèle simple (Decision Tree), tentative de vectorisation TF-IDF.
+- `Titanic_model.ipynb` : Entraînement du modèle
 - Données d’origine : `train.csv`, `test.csv`
 - Données transformées : `train_net.csv`, `test_net.csv`
+🔗 [DATA LINK](https://huggingface.co/datasets/0wI/titanic-survival)
 
 ## ✅ Techniques utilisées
 
