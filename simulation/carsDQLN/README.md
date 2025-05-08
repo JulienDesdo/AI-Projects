@@ -5,7 +5,7 @@ Dans mon exploratio de l'intelligence artificielle, j'ai toujours souhaité me p
 Les **DQN** ont explosé en 2015 DeepMind a battu des records sur les jeux Atari en surpassant les humains, sans connaissance particulière du jeu [LIEN DE LA VIDEO DU RECORD]. 
 
 
-J'ai donc décidé – pour mieux comprendre ces algorithmes – de développer un jeu de voiture où l'IA doit atteindre une ligne d'arrivée. Ce README explique les bases théoriques, le "pourquoi du comment", puis passe en revue les principales briques du projet.
+J'ai donc décidé – pour mieux comprendre ces algorithmes – de développer un jeu de voiture où l'IA doit atteindre une ligne d'arrivée. Ce README explique les bases théoriques, le "pourquoi du comment", puis passe en revu les principales briques du projet.
 
 [GIF D ILLUSTRATION] 
 
@@ -29,40 +29,44 @@ C'est pourquoi avant de parler des réseaux de neurones renforcés, je vais parl
   #### *Vocabulaire clé*
   <br>
 
-  [DESSINS SOURIS LABYRINTHE]
-  Prenons l'exemple d'un souris dans un labirynthe. La modélisation d'un environnement RL repose sur les precepts suivants : 
-  [SCHEMA AGENT, ENV, ACTION]
+  [DESSINS SOURIS LABYRINTHE] <br>
+  Prenons l'exemple d'un souris dans un labyrinthe. La modélisation d'un environnement RL repose sur les precepts suivants : 
+  [SCHEMA AGENT, ENV, ACTION] <br>
 
-  Travailler en Q-Learning c'est d'abord identifier qui fait quoi dans notre cas concret par rapport aux éléments théoriques nécessaires. Ici, **l'environnement (E)** est le labirynthe car il constitue l'ensemble de toutes les case possibles. Il possède des **rewards (R)** (fromage) et des **malus** (éclair). L'agent est la souris qui se déplace dans le labyrinthe et a quatre options possibles (**actions (A)**) qu'elle peut effectuer sur l'environnement (si celui ci le permet) : aller en bas, haut, gauche, droite. Ce schéma est la base de la théorie du RL. L'idée est que l'agent va explorer son environnement et chercher à cumuler une maximum de points (reward) en evitant les malus. Le but ultime serait de chercher le "largets accumulted reward over a sequence of actions". Et du coup on peut voir le reward comme une indication à l'agent s'il est en train de réussir sa mission ou non ("Indication of agent performance"). 
-  Pour faire ça on fournit des données (**observations**) à la souris pour mettons qu'elle sache ce qu'il y a sur les cases adjacentes. <br> 
+  Travailler en Q-Learning c'est d'abord identifier qui fait quoi dans notre cas concret par rapport aux éléments théoriques nécessaires. Ici, **l'environnement (E)** est le labyrinthe car il constitue l'ensemble de toutes les case possibles. Il possède des **rewards (R)** (fromage) et des **malus** (éclair). L'agent est la souris qui se déplace dans le labyrinthe et a quatre options possibles (**actions (A)**) qu'elle peut effectuer sur l'environnement (si celui ci le permet) : aller en bas, haut, gauche, droite. Ce schéma est la base de la théorie du RL. L'idée est que l'agent va explorer son environnement et chercher à cumuler un maximum de points (reward) en evitant les malus. Le but ultime serait de chercher le "largets accumulted reward over a sequence of actions". Et du coup on peut voir le reward comme une indication à l'agent s'il est en train de réussir sa mission ou non ("Indication of agent performance"). 
+  Pour faire ça on fournit des données (**observations**) à la souris pour qu'elle sache ce qu'il y a sur les cases adjacentes. <br> 
   
- * **Note** : L'observation peut être juste les cases adjacentes ou un champ de vision plus large, ça depend du design du jeu. Dans un labirynthe simple, c'est souvent les cases adjacentes. Dans les jeux plus complexes (ex: vision 3D), ça peut être plus large.* <br>
+ * **Note** : L'observation peut être juste pour les cases adjacentes ou un champ de vision plus large, ça depend du design du jeu. Dans un labyrinthe simple, c'est souvent les cases adjacentes. Dans les jeux plus complexes (ex: vision 3D), ça peut être plus large. En RL classique, cela revient à connaître tout le labyrinthe (ce qu'il y a sur chaque case). Mais il existe aussi le RL partiellement observable (POMDP) pour une observabilité réduite.* <br>
   
-  L'environnement peut être assimilé à une matrice où chaque case du labirynthe est un element de la matrice. Et un element de cette matrice, c'est à dire une case sur laquelle se trouve la souris, et un **état** ou **state (S)**.
-***********************VERIFIER SI ENV = SET OF STATES + MATRIX OF TRANSITION ou ENV = SET OF STATES + REWARDS... BREF vérifier les def precise et affiner. QUOI . !!!! ********************
+L'environnement peut être représenté sous forme d'une **matrice**, où chaque case du labyrinthe correspond à un élément unique. Chaque élément de cette matrice — c’est-à-dire chaque case sur laquelle la souris peut se trouver — définit un **état** ou **state (S)**.  
+
+En pratique, l'environnement englobe non seulement l'ensemble des états accessibles, mais aussi les règles du jeu : c'est-à-dire quelles actions sont possibles à partir de chaque état, comment l'agent peut évoluer après une action, et quelles récompenses il reçoit en fonction des choix effectués. Cette structure globale permet de modéliser de manière complète l'interaction entre l'agent et son monde virtuel, même si, pour l'instant, on se concentre simplement sur la représentation des états via la matrice du labyrinthe.
    <br>
   #### *Chaines de Markov* 
   <br>
 
 **1° Markov Process (MP)** <br>
 
-Pour réussir à ce que la souris prenne un décision sur la case sur laquelle elle doit aller à partir de celle où elle se trouve, on peut attribuer des probabilités selon qu'il est bon ou mauvais de s'y rendre. Notre systeme est en fait une **machine à état** dans laquel on passe d'un état à un autre grâce à une certaine probabilité : ce sont les MARKOV PROCESS. Voici un exemple général :  
-***********************VERIFIER MARKOV PROCESS j'ai l'impression de donenr une définition impropre. ******************************************
+Pour que la souris décide vers quelle case aller à partir de sa position actuelle, on peut modéliser la dynamique de ses déplacements sous forme de probabilités : par exemple, quelle est la probabilité qu’elle atteigne telle ou telle case après une action donnée ? Notre système devient alors **une machine à états** où l’on passe d’un état à un autre selon certaines règles probabilistes : c’est ce qu’on appelle un **processus de Markov**. Voici un schéma : 
 
 [SCHEMA MARKOV AVEC PROBAS]
 
-Chaque cercle est un état, pour la souris ce serait un position/case dans le labirynthe. 
+Chaque cercle est un état, pour la souris ce serait un position/case dans le labyrinthe. 
 
 Naturellement, puisque le passage d'un état à un autre se fait en probabilités, on voit que l'on peut regrouper ces probabilités dans une matrice qui décrit totalement le système précédent. 
 
 [SCHEMA MATRICE CORRESPONDANTE]
+<br>
 On appelle de cela la **matrice de probabilité (P)** du système. On pourrait donc dire que le systeme c'est : **l'ensemble des états (S) & la matrice de transistion d'état (P)**
-
-Precisions de vocabulaire : **une chaine de markov** (ensemble d'états liés entre eux : state1 -> state2 -> ... -> stateN) ; **History** : Séquence d'obersation à travers le temps (exemple : [Chat, Ordinateur, Maison, Chat, Chat, Ordinateur...]) ; **Episode** :  extraire l'observation de l'état de transition ; 
+<br>
+Precisions de vocabulaire : 
+- **Chaine de markov** : ensemble d'états liés entre eux : state1 -> state2 -> ... -> stateN) ; 
+- **History** : Séquence d'obersation à travers le temps (exemple : [A, B, C, A, A, B...]) ; 
+- **Episode** :  extraire l'observation de l'état de transition ;  
 
 **2° Markov Reward Process (MRP)** <br>
 
-Seulement, le probleme principal de cette méthode est qu'il n'y aucune prévoyance. En effet, si la souris a le choix entre un éclair en haut et un fromage en bas. Mais que dans le premier cas, l'éclair est suivi de 100 fromages et dans l'autre suivi de 100 éclair. La souris choisira un fromage et 100 eclair. Ce qui donne une souris grillée.<br>
+Seulement, le probleme principal de cette méthode est qu'il n'y a aucune prévoyance. En effet, si la souris a le choix entre un éclair en haut et un fromage en bas. Mais que dans le premier cas, l'éclair est suivi de 100 fromages et dans l'autre suivi de 100 éclairs. La souris choisira un fromage et 100 eclairs. Ce qui donne une souris grillée.<br>
 C'est pouquoi on introduit les **MARKOV REWARD PROCESS**. On introduit une variable aléatoire qui symabolise le gain de l'agent sur une episode. Cela s'écrit : 
 
 [FORMULE Gt avec somme] 
@@ -71,17 +75,22 @@ C'est pouquoi on introduit les **MARKOV REWARD PROCESS**. On introduit une varia
 
 [Equation V(S) = E[G | St=s]]
 
-On peut récrier cette formule un peu abstraire en une qui s'applique directement au cas du système à état : <br>
+On peut réécrire cette formule un peu abstraite en une qui s'applique directement au cas du système à état : <br>
 [V(s)=R(s)+γs′∑​P(s′∣s)V(s′)] 
 
 Il s'agit de l'**équation de Bellman simplifiée pour le cas MRP (markov reward process)**. En analysant la formule on voit bien que tout notre procédé revient à obtenir le systeme suivant : 
+<br>
 [schema MARKOV avec probas et reward]
+<br>
 [schema matrix of P ; matrix of R]
 
-**Notre systeme MRP se formule (S,P,R,γ)** <br>
+**Notre systeme MRP se formule (S,P,R,γ)** <br><br>
 
 Voici un **exemple** pour être un peu didactique : <br>
-États : S={A,B}, R(A)=5, R(B)=10, P(A∣A)=0.7, P(B∣A)=0.3, P(A∣B)=0.4, P(B∣B)=0.6. En appliquant Bellamn MRP, on a : 
+États : S={A,B}, R(A)=5, R(B)=10, P(A∣A)=0.7, P(B∣A)=0.3, P(A∣B)=0.4, P(B∣B)=0.6. 
+<br>
+En appliquant Bellamn MRP, on a : 
+
 V(A)=5+0.9×[0.7V(A)+0.3V(B)] <br>
 V(B)=10+0.9×[0.4V(A)+0.6V(B)] <br>
 
@@ -90,7 +99,7 @@ V(B)=10+0.9×[0.4V(A)+0.6V(B)] <br>
 
 
 On peut d'instinct remarquer un dernier probleme ? Comment explorer correctement son environnement, dois je en tant que souris, explorer ou exploiter le peu que j'ai exploré ? C'est tout le dilemne de l'agent qui doit à la fois posséder des données pour pouvoir prédire ensuite mais en même temps,
-   La solution consiste en fait à predire la solution en fonction de calcul de Q-value, et de changer la manière dont on choisit ses valeurs à mesure que l'on explore son environnemnt : la selection d'un Q-value s'appelle une politique. Trouver les politique optimale c'est obtenir pi*. On est là en plein de un schéma decisionnel : les markov decisions process. Notre systeme est une matrice à trois dimensions : la matrice d'état auquel on adjoint nos actions. 
+   La solution consiste en fait à predire la solution en fonction de calcul de Q-value, et de changer la manière dont on choisit ses valeurs à mesure que l'on explore son environnemnt : la selection d'un Q-value s'appelle une politique. Trouver les politique optimale c'est obtenir pi*. On est là en plein de un schéma decisionnel : les markov decisions processes. Notre systeme est une matrice à trois dimensions : la matrice d'état auquel on adjoint nos actions. 
 
 (bon des choses à reprécciser!).   
 -> probleme d'evolution des actions resolus par decisions process, là où les actions sont figés dans le cas du reward process. 
