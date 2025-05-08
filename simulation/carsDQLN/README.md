@@ -1,11 +1,11 @@
-# Cars_DQLN
+# 🚗 Cars_DQLN
 
 Dans mon exploratio de l'intelligence artificielle, j'ai toujours souhaité me pencher sur une technique combinant les réseaux de neurones (**deep-learning**) et le Q-learning (**Reinforcement learning**) car le mélange des deux, donnant place aux **Deep Reinforcement Learning** *(que j'abrège en DQLN pour Deep-Q-Learning-Networks)*. 
 
 Les **DQN** ont explosé en 2015 DeepMind a battu des records sur les jeux Atari en surpassant les humains, sans connaissance particulière du jeu [LIEN DE LA VIDEO DU RECORD]. 
 
 
-J'ai donc décidé - pour comprendre ces algorithmes - de coder un jeu de voiture où l'IA devra atteindre le ligne d'arrivée. Dans ce readme j'explique les bases théoriques - et "le pourquoi du comment ?" - , et passerai en revu les principales briques du projet. 
+J'ai donc décidé – pour mieux comprendre ces algorithmes – de développer un jeu de voiture où l'IA doit atteindre une ligne d'arrivée. Ce README explique les bases théoriques, le "pourquoi du comment", puis passe en revue les principales briques du projet.
 
 [GIF D ILLUSTRATION] 
 
@@ -23,19 +23,23 @@ C'est pourquoi avant de parler des réseaux de neurones renforcés, je vais parl
 
 ### Q-Learning 
 
-  #### Vocabulaire clé 
+  #### *Vocabulaire clé*
+<br> <br>
 
   [DESSINS SOURIS LABYRINTHE]
   Prenons l'exemple d'un souris dans un labirynthe. La modélisation d'un environnement RL repose sur les precepts suivants : 
   [SCHEMA AGENT, ENV, ACTION]
 
   Travailler en Q-Learning c'est d'abord identifier qui fait quoi dans notre cas concret par rapport aux éléments théoriques nécessaires. Ici, **l'environnement (E)** est le labirynthe car il constitue l'ensemble de toutes les case possibles. Il possède des **rewards (R)** (fromage) et des **malus** (éclair). L'agent est la souris qui se déplace dans le labyrinthe et a quatre options possibles (**actions (A)**) qu'elle peut effectuer sur l'environnement (si celui ci le permet) : aller en bas, haut, gauche, droite. Ce schéma est la base de la théorie du RL. L'idée est que l'agent va explorer son environnement et chercher à cumuler une maximum de points (reward) en evitant les malus. Le but ultime serait de chercher le "largets accumulted reward over a sequence of actions". Et du coup on peut voir le reward comme une indication à l'agent s'il est en train de réussir sa mission ou non ("Indication of agent performance"). 
-  Pour faire ça on fournit des données (**observations**) à la souris pour mettons qu'elle sache ce qu'il y a sur les cases adjacentes. ******************** Que se passe t il autour de l'agent ? - mais est ce seulement les cases adjcentes ou un champ autour ? ça depend du jeu c'est ça ??? **************
+  Pour faire ça on fournit des données (**observations**) à la souris pour mettons qu'elle sache ce qu'il y a sur les cases adjacentes. <br> 
+  
+ * **Note** : L'observation peut être juste les cases adjacentes ou un champ de vision plus large, ça depend du design du jeu. Dans un labirynthe simple, c'est souvent les cases adjacentes. Dans les jeux plus complexes (ex: vision 3D), ça peut être plus large.* <br>
   
   L'environnement peut être assimilé à une matrice où chaque case du labirynthe est un element de la matrice. Et un element de cette matrice, c'est à dire une case sur laquelle se trouve la souris, et un **état** ou **state (S)**.
 ***********************VERIFIER SI ENV = SET OF STATES + MATRIX OF TRANSITION ou ENV = SET OF STATES + REWARDS... BREF vérifier les def precise et affiner. QUOI . !!!! ********************
   
-  #### 3 Chaines de Markov 
+  #### *Chaines de Markov* 
+  <br> <br>
 
 **1° Markov Process (MP)** <br>
 
@@ -89,10 +93,11 @@ On peut d'instinct remarquer un dernier probleme ? Comment explorer correctement
 -> probleme d'evolution des actions resolus par decisions process, là où les actions sont figés dans le cas du reward process. 
 
   #### Q-Tables, Bellman Equation, Politiques, Algorithme
-
+<br> <br>
 
   
   #### Limites du Q-Learning 
+<br> <br>
 
   Dans le cas de notre jeu de voiture, 
   Environnement trop grand
