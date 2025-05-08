@@ -24,7 +24,7 @@ Tout d'abord, rappelons qu'il existe différentes catégories d'algorithmes en i
 C'est pourquoi avant de parler des réseaux de neurones renforcés, je vais parler de Q-Learning. 
 
 ### Q-Learning 
-<br>
+
    
   #### *Vocabulaire clé*
   <br>
