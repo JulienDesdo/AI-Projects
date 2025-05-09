@@ -2,7 +2,7 @@
 
 Dans mon exploratio de l'intelligence artificielle, j'ai toujours souhaité me pencher sur une technique combinant les réseaux de neurones (**deep-learning**) et le Q-learning (**Reinforcement learning**) car le mélange des deux, donnant place aux **Deep Reinforcement Learning** *(que j'abrège en DQLN pour Deep-Q-Learning-Networks)*. 
 
-Les **DQN** ont explosé en 2015 DeepMind a battu des records sur les jeux Atari en surpassant les humains, sans connaissance particulière du jeu [LIEN DE LA VIDEO DU RECORD]. 
+Les **DQN** ont explosé en 2015 DeepMind a battu des records sur les jeux Atari en surpassant les humains, sans connaissance particulière du jeu [LIEN DE LA VIDEO DU RECORD](https://www.youtube.com/watch?v=z48JCQZwwzA). 
 
 
 J'ai donc décidé – pour mieux comprendre ces algorithmes – de développer un jeu de voiture où l'IA doit atteindre une ligne d'arrivée. Ce README explique les bases théoriques, le "pourquoi du comment", puis passe en revu les principales briques du projet.
