@@ -38,7 +38,7 @@ C'est pourquoi avant de parler des réseaux de neurones renforcés, je vais parl
   Travailler en Q-Learning c'est d'abord identifier qui fait quoi dans notre cas concret par rapport aux éléments théoriques nécessaires. Ici, **l'environnement (E)** est le labyrinthe car il constitue l'ensemble de toutes les case possibles. Il possède des **rewards (R)** (fromage) et des **malus** (éclair). L'agent est la souris qui se déplace dans le labyrinthe et a quatre options possibles (**actions (A)**) qu'elle peut effectuer sur l'environnement (si celui ci le permet) : aller en bas, haut, gauche, droite. Ce schéma est la base de la théorie du RL. L'idée est que l'agent va explorer son environnement et chercher à cumuler un maximum de points (reward) en evitant les malus. Le but ultime serait de chercher le "largets accumulted reward over a sequence of actions". Et du coup on peut voir le reward comme une indication à l'agent s'il est en train de réussir sa mission ou non ("Indication of agent performance"). 
   Pour faire ça on fournit des données (**observations**) à la souris pour qu'elle sache ce qu'il y a sur les cases adjacentes. <br> 
   
- * **Note** : L'observation peut être juste pour les cases adjacentes ou un champ de vision plus large, ça depend du design du jeu. Dans un labyrinthe simple, c'est souvent les cases adjacentes. Dans les jeux plus complexes (ex: vision 3D), ça peut être plus large. En RL classique, cela revient à connaître tout le labyrinthe (ce qu'il y a sur chaque case). Mais il existe aussi le RL partiellement observable (POMDP) pour une observabilité réduite.* <br>
+ * **Note** : L'observation peut être juste pour les cases adjacentes ou un champ de vision plus large, ça dépend du design du jeu. Dans un labyrinthe simple, c'est souvent les cases adjacentes. Dans les jeux plus complexes (ex: vision 3D), ça peut être plus large. En RL classique, cela revient à connaître tout le labyrinthe (ce qu'il y a sur chaque case). Mais il existe aussi le RL partiellement observable (POMDP) pour une observabilité réduite.* <br>
   
 L'environnement peut être représenté sous forme d'une **matrice**, où chaque case du labyrinthe correspond à un élément unique. Chaque élément de cette matrice — c’est-à-dire chaque case sur laquelle la souris peut se trouver — définit un **état** ou **state (S)**.  
 
@@ -206,7 +206,7 @@ Avantages : <br>
 
 ### Deep-Q-Networks 
 
-Enumeration des etapes, lien vers video. 1,...10. Policy Netowrk (train), Target Network, Q-Values... 
+Enumeration des etapes, lien vers video. 1,...10. Policy Network (train), Target Network, Q-Values... 
 
 ---
 
