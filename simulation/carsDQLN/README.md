@@ -308,6 +308,7 @@ La documentation est générée avec doxygen et les diagrammes de classes avec p
 - **Pygame Documentation 1** : [https://he-arc.github.io/livre-python/pygame/index.html](https://he-arc.github.io/livre-python/pygame/index.html)
 - **Pygame Documentation 2** : [https://www.pygame.org/news](https://www.pygame.org/news)
 - **OpenAI Spinning Up (Reinforcement Learning guide)** : [https://spinningup.openai.com/en/latest/](https://spinningup.openai.com/en/latest/)
+- **Gym Documentation** : [https://www.gymlibrary.dev/(https://www.gymlibrary.dev/)
 - **Stable-Baselines3 (Reinforcement Learning Library)** : [https://github.com/DLR-RM/stable-baselines3](https://github.com/DLR-RM/stable-baselines3)
 - **YouTube Videos :**  
   - [Google's DeepMind AI Just Taught Itself To Walk](https://www.youtube.com/watch?v=gn4nRCC9TwQ)  
