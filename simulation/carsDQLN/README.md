@@ -29,11 +29,11 @@ C'est pourquoi avant de parler des réseaux de neurones renforcés, je vais parl
   #### *Vocabulaire clé*
   <br>
 
-  ![mouse-labirynthe](/images-doc/mouse-labirynthe.png)
+  ![mouse-labirynthe](images-doc/mouse-labirynthe.png)
   <br>
   Prenons l'exemple d'un souris dans un labyrinthe. La modélisation d'un environnement RL repose sur les precepts suivants : 
   
-  ![SCHEMA AGENT, ENV, ACTION](/images-doc/RL-components) <br>
+  ![SCHEMA AGENT, ENV, ACTION](images-doc/RL-components) <br>
 
   Travailler en Q-Learning c'est d'abord identifier qui fait quoi dans notre cas concret par rapport aux éléments théoriques nécessaires. Ici, **l'environnement (E)** est le labyrinthe car il constitue l'ensemble de toutes les case possibles. Il possède des **rewards (R)** (fromage) et des **malus** (éclair). L'agent est la souris qui se déplace dans le labyrinthe et a quatre options possibles (**actions (A)**) qu'elle peut effectuer sur l'environnement (si celui ci le permet) : aller en bas, haut, gauche, droite. Ce schéma est la base de la théorie du RL. L'idée est que l'agent va explorer son environnement et chercher à cumuler un maximum de points (reward) en evitant les malus. Le but ultime serait de chercher le "largets accumulted reward over a sequence of actions". Et du coup on peut voir le reward comme une indication à l'agent s'il est en train de réussir sa mission ou non ("Indication of agent performance"). 
   Pour faire ça on fournit des données (**observations**) à la souris pour qu'elle sache ce qu'il y a sur les cases adjacentes. <br> 
@@ -51,13 +51,13 @@ En pratique, l'environnement englobe non seulement l'ensemble des états accessi
 
 Pour que la souris décide vers quelle case aller à partir de sa position actuelle, on peut modéliser la dynamique de ses déplacements sous forme de probabilités : par exemple, quelle est la probabilité qu’elle atteigne telle ou telle case après une action donnée ? Notre système devient alors **une machine à états** où l’on passe d’un état à un autre selon certaines règles probabilistes : c’est ce qu’on appelle un **processus de Markov**. Voici un schéma : 
 
-![SCHEMA Markov MP](/images-doc/state-machine-markov-process.png)
+![SCHEMA Markov MP](images-doc/state-machine-markov-process.png)
 
 Chaque cercle est un état, pour la souris ce serait un position/case dans le labyrinthe. 
 
 Naturellement, puisque le passage d'un état à un autre se fait en probabilités, on voit que l'on peut regrouper ces probabilités dans une matrice qui décrit totalement le système précédent. 
 
-![Matrice P](/images-doc/P-matrix.png)
+![Matrice P](images-doc/P-matrix.png)
 <br>
 On appelle de cela la **matrice de transition (P)** du système. On pourrait donc dire que le systeme c'est : **l'ensemble des états (S) & la matrice de transition d'état (P)**
 <br>
@@ -71,20 +71,20 @@ Precisions de vocabulaire :
 Seulement, le problème principal de cette méthode est qu'il n'y a aucune prévoyance. En effet, si la souris a le choix entre un éclair en haut et un fromage en bas. Mais que dans le premier cas, l'éclair est suivi de 100 fromages et dans l'autre suivi de 100 éclairs. La souris choisira un fromage et 100 eclairs. Ce qui donne une souris grillée.<br>
 C'est pouquoi on introduit les **MARKOV REWARD PROCESS**. On introduit une variable aléatoire qui symbolise le gain de l'agent sur une episode. Cela s'écrit : 
 
-![FORMULE Gt avec somme](/images-doc/expression-gain.png)
+![FORMULE Gt avec somme](images-doc/expression-gain.png)
 
 **γ est le facteur de prévoyance de l'agent entre 0 et 1**. Cela a pour but d'évaluer la valeur d'un état que l'on choisit en tenant compte de récompenses à plus ou moins long terme. Evaluer les recompanses à long terme sur un episode c'est approcher γ de 1, sinon rapprocher γ de 0 c'est choisir le gain maximum immédiat au risque d'y perdre plus (c'est le cas précédent). La value of state V(s) s'exprime : 
 
-![Equation V(S) = E[G | St=s]](/images-doc/value-of-state.png) 
+![Equation V(S) = E[G | St=s]](images-doc/value-of-state.png) 
 
 On peut réécrire cette formule un peu abstraite en une qui s'applique directement au cas du système à état : <br>
-![V(s)=R(s)+γs′∑​P(s′∣s)V(s′)](/images-doc/Bellman-simplifie.png)
+![V(s)=R(s)+γs′∑​P(s′∣s)V(s′)](images-doc/Bellman-simplifie.png)
 
 Il s'agit de l'**équation de Bellman simplifiée pour le cas MRP (markov reward process)**. En analysant la formule on voit bien que tout notre procédé revient à obtenir le systeme suivant : 
 <br>
-![schema MARKOV avec probas et reward](/images-doc/state-machine-markov-process.png)
+![schema MARKOV avec probas et reward](images-doc/state-machine-markov-process.png)
 <br>
-![schema matrix of P ; matrix of R](/images-doc/matrix.png)
+![schema matrix of P ; matrix of R](images-doc/matrix.png)
 
 **Notre systeme MRP se formule (S,P,R,γ)** <br><br>
 
@@ -111,7 +111,7 @@ Pour modéliser ça, on utilise ce qu'on appelle un Markov Decision Process (MDP
 
 Résultat : le système devient une **matrice à trois dimensions** : Pour un état s on possède plusieurs actions réalisable. Dans le cas de la souris, on a une **matrice tri-dimensionnelle de taille 4x4x4 (longueur x largeur x actions)**. 
 
-![schéma matrice en 3D](/images-doc/state-machine-markov-decision-process.png)
+![schéma matrice en 3D](images-doc/state-machine-markov-decision-process.png)
 
 La question est maintenant de savoir ce que contient cette matrice ? Elle contient en réalité les Q-values, qui aide à la prise de décision à l'aide de la politique. 
 
@@ -121,7 +121,7 @@ Mais au fait, ces fameuses Q-values, c’est quoi ?
 
 Eh bien c’est là qu’arrive l'équation de Bellman, qui fait le lien entre tout ce qu’on a vu avant : état, action, récompense, probabilité de transition. L’idée : calculer pour chaque couple (état, action) la “valeur” de cette action (ce qu’on peut espérer gagner en la prenant).
 
-![equation de bellman compllete avec politique pi, value of state, reward et la proba](/images-doc/Bellman-equation.png)
+![equation de bellman compllete avec politique pi, value of state, reward et la proba](images-doc/Bellman-equation.png)
 
 - **γ** est le facteur de prévoyance (déjà vu avant).
 - La somme parcourt tous les états accessibles après **(s,a)**, avec la meilleure action suivante.
@@ -164,7 +164,7 @@ L’exploration permet d’éviter de passer à côté d’une meilleure solutio
 4️⃣ Je mets à jour Q(s,a). <br>
 5️⃣ Je recommence. <br>
 
-![schéma algo flow ici](/images-doc/boucle-MDP.png)
+![schéma algo flow ici](images-doc/boucle-MDP.png)
 
 Pour ce qui est de la Q-table au début on l'initilise soit à 0 soit avec des valeurs aléatoires. Qu'en est t il des matrices (R) et (P) ? 
 Dans les cas pratiques on ne connait pas forcement les matrices de transitions. Donc : 
