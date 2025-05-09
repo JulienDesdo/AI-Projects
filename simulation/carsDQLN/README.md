@@ -2,7 +2,7 @@
 
 Dans mon exploratio de l'intelligence artificielle, j'ai toujours souhaité me pencher sur une technique combinant les réseaux de neurones (**deep-learning**) et le Q-learning (**Reinforcement learning**) car le mélange des deux, donnant place aux **Deep Reinforcement Learning** *(que j'abrège en DQLN pour Deep-Q-Learning-Networks)*. 
 
-Les **DQN** ont explosé en 2015 DeepMind a battu des records sur les jeux Atari en surpassant les humains, sans connaissance particulière du jeu [LIEN DE LA VIDEO DU RECORD](https://www.youtube.com/watch?v=z48JCQZwwzA). 
+Les **DQN** ont explosé en 2015 DeepMind a battu des records sur les jeux Atari en surpassant les humains, sans connaissance particulière du jeu. [Lien de la vidéo](https://www.youtube.com/watch?v=z48JCQZwwzA)
 
 
 J'ai donc décidé – pour mieux comprendre ces algorithmes – de développer un jeu de voiture où l'IA doit atteindre une ligne d'arrivée. Ce README explique les bases théoriques, le "pourquoi du comment", puis passe en revu les principales briques du projet.
@@ -208,7 +208,7 @@ Avantages : <br>
 
 Comme expliqué précédemment, dans le DQN, la Q-Table est remplacée par un réseau de neurones profond. Le réseau apprend à approximer la fonction Q-value :
 
-[loss-formula-Q-network](images-doc/loss-formula-Q-network.png)
+[loss-formula-Q-network](images-doc/loss-formula-Q-netowrk.png)
 
 Pour rappel : 
 - **θ** : les paramètres (poids) du réseau principal (policy network),
@@ -272,7 +272,7 @@ En résumé : tout le bazar théorique sur le RL a été traduit ici en un circu
 
 Pour plus de détails sur la structure du code, voici les diagrammes générés automatiquement :
 [Diagramme des classes](images-doc/classes_CarsDQLN.png)
-[Diagramme des dépendances](packages_CarsDQLN.png)
+[Diagramme des dépendances](images-doc/packages_CarsDQLN.png)
 
 La documentation complète (HTML) est dispo dans le dossier ![html/index.html](html/index.html). <br>
 
