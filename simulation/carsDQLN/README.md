@@ -217,3 +217,18 @@ Diagramme de classes ?
 Fonctionnalités. 
 Explication code + Générer eventuellement docs (doxygen?) du script. 
 
+
+---
+
+## 📚 Références & Liens Utiles 
+
+- **Deep Reinforcement Learning Hands-On**, *Maxim Lapan*, Third Edition, Packt — *A practical and easy-to-follow guide to RL, from Q-Learning and DQNs to PPO and RLHF.*
+- **Pygame Documentation 1** : [https://he-arc.github.io/livre-python/pygame/index.html](https://he-arc.github.io/livre-python/pygame/index.html)
+- **Pygame Documentation 2** : [https://www.pygame.org/news](https://www.pygame.org/news)
+- **OpenAI Spinning Up (Reinforcement Learning guide)** : [https://spinningup.openai.com/en/latest/](https://spinningup.openai.com/en/latest/)
+- **Stable-Baselines3 (Reinforcement Learning Library)** : [https://github.com/DLR-RM/stable-baselines3](https://github.com/DLR-RM/stable-baselines3)
+- **YouTube Videos :**  
+  - [Google's DeepMind AI Just Taught Itself To Walk](https://www.youtube.com/watch?v=gn4nRCC9TwQ)  
+  - [AI Learns to Speedrun Mario](https://www.youtube.com/watch?v=OQitI066aI0)  
+  - [MarI/O - Machine Learning for Video Games](https://www.youtube.com/watch?v=qv6UVOQ0F44&t=185s)
+- **Github / Simulations IA (Jean Buffer)** — Vidéos de simulation par IA + code source : [https://github.com/johnBuffer](https://github.com/johnBuffer)
