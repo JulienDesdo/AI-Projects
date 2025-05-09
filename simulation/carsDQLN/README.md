@@ -274,7 +274,7 @@ Pour plus de détails sur la structure du code, voici les diagrammes générés 
 [Diagramme des classes](images-doc/classes_CarsDQLN.png)
 [Diagramme des dépendances](packages_CarsDQLN.png)
 
-La documentation complète (HTML) est dispo dans le dossier html/index.
+La documentation complète (HTML) est dispo dans le dossier ![html/index.html](html/index.html). <br>
 
 ---
 
@@ -289,11 +289,12 @@ pip install -r requirements.txt
 python main.py
 ```
 <br>
-Sélectionnez la carte
-Choisissez le mode :
-- **Joueur** (manuel)
-- **TEST** (IA déjà entraînée)
-- **ENTRAÎNEMENT** (lance l'entraînement IA)
+
+
+Sélectionnez la carte, Choisissez le mode :
+ - **Joueur** (manuel)
+ - **TEST** (IA déjà entraînée)
+ - **ENTRAÎNEMENT** (lance l'entraînement IA)
 <br>
 On utilise les arrows key pour s'orienter dans le menu. On peut désactiver le champ de vision de la voiture via la touche v dans le menu (par défaut activé). <br>
 
