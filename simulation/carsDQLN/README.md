@@ -251,11 +251,53 @@ Référez-vous à cette vidéo pour entrer plus dans les détails :
 
 ## 🛠️Programme
 
-Concretement : Libs de reinforcement, stable baseline pour les réseaux de neurones. 
-Diagramme de classes ? 
-Fonctionnalités. 
+Après cet partie théorique, voyons comment fonctionne globalement le programme. C’est un **simulateur 2D** où une voiture doit apprendre à atteindre une ligne d’arrivée toute seule. Pour ça, il fallait évidemment coder :
+1️⃣ la **voiture elle-même** (comment elle se déplace, comment elle “voit” la piste), <br>
+2️⃣ la **piste** (où est la route, où est l’arrivée, etc.), <br>
+3️⃣ et surtout un **environnement Gym** qui permette d’interfacer tout ça avec un algorithme DQN prêt à entraîner l’agent. <br>
 
+L'élément clé que j'ai choisi pour "donner des yeux" à la voiture, c’est un **système de capteurs simulés sous forme de rayons** : concrètement, la voiture projette 7 rayons devant elle (comme des capteurs de distance, type Lidar basique) pour savoir si elle est proche du bord de la piste. Ça lui donne une vision partielle de son environnement, ce qui est essentiel pour qu’elle puisse décider où aller. C’est ça son **“observation”**, au sens RL.
 
+Du coup, mon modèle tourne autour de ces concepts :
+- La **classe** `Vehicule` gère la physique (accélération, freinage, virages) + les capteurs (7 rayons qui scannent la piste à chaque frame).
+- La **classe** `Track` construit le tracé (points clés + ligne d’arrivée) et vérifie si la voiture est sur la route ou hors-piste.
+- L’**environnement** `RacingEnv` **(Gym)** orchestre le tout : il reçoit des actions (accélérer, tourner à gauche, tourner à droite), met à jour l’état du véhicule, renvoie l’observation (= les distances des rayons), calcule la récompense (progression ou crash), et gère la condition d'arrêt (ligne d’arrivée atteinte ou sortie de piste).
+<br>
+
+Pour piloter tout ça, j’ai ajouté un **menu interactif** qui permet de choisir la carte, le mode de jeu (joueur manuel, IA déjà entraînée, ou lancement d’un nouvel entraînement), et même de désactiver l'affichage des capteurs pour voir ce que ça donne. Ça rend le projet facilement testable par n’importe qui.
+
+Enfin côté IA : j'utilise la lib **Stable-Baselines3**, qui permet d’entraîner un DQN sur mon environnement maison. Le script train_agent.py lance l'entraînement et sauvegarde le modèle, tandis que `test_agent.py` recharge ce modèle pour simuler un run où l’IA pilote toute seule.
+
+En résumé : tout le bazar théorique sur le RL a été traduit ici en un circuit 2D, une voiture équipée de capteurs qui “sent” la route, et un système d’entraînement/test basé sur des DQNs modernes. L’agent apprend par essais/erreurs à conduire sur la piste, exactement comme on l’a vu dans les bases théoriques, mais cette fois en pratique.
+
+Pour plus de détails sur la structure du code, voici les diagrammes générés automatiquement :
+[Diagramme des classes](images-doc/classes_CarsDQLN.png)
+[Diagramme des dépendances](packages_CarsDQLN.png)
+
+La documentation complète (HTML) est dispo dans le dossier html/index.
+
+---
+
+## 🚀 Lancer le projet
+
+1️⃣ Installer les dépendances
+```
+pip install -r requirements.txt
+```
+2️⃣ Lancer le menu principal
+```
+python main.py
+```
+<br>
+Sélectionnez la carte
+Choisissez le mode :
+- **Joueur** (manuel)
+- **TEST** (IA déjà entraînée)
+- **ENTRAÎNEMENT** (lance l'entraînement IA)
+<br>
+On utilise les arrows key pour s'orienter dans le menu. On peut désactiver le champ de vision de la voiture via la touche v dans le menu (par défaut activé). <br>
+
+La documentation est générée avec doxygen et les diagrammes de classes avec pylint. 
 
 ---
 
