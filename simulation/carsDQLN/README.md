@@ -82,7 +82,7 @@ On peut réécrire cette formule un peu abstraite en une qui s'applique directem
 
 Il s'agit de l'**équation de Bellman simplifiée pour le cas MRP (markov reward process)**. En analysant la formule on voit bien que tout notre procédé revient à obtenir le systeme suivant : 
 <br>
-![schema MARKOV avec probas et reward](images-doc/state-machine-markov-process.png)
+![schema MARKOV avec probas et reward](images-doc/state-machine-markov-reward-process.png)
 <br>
 ![schema matrix of P ; matrix of R](images-doc/matrix.png)
 
