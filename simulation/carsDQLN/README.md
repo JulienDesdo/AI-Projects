@@ -7,7 +7,7 @@ Les **DQN** ont explosé en 2015 DeepMind a battu des records sur les jeux Atari
 
 J'ai donc décidé – pour mieux comprendre ces algorithmes – de développer un jeu de voiture où l'IA doit atteindre une ligne d'arrivée. Ce README explique les bases théoriques, le "pourquoi du comment", puis passe en revu les principales briques du projet.
 
-[GIF D ILLUSTRATION] 
+![GIF ANIMATION](images-doc/Animation.gif)
 
 ---
 
