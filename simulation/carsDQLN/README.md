@@ -15,7 +15,7 @@ J'ai donc décidé – pour mieux comprendre ces algorithmes – de développer 
 
 Tout d'abord, rappelons qu'il existe différentes catégories d'algorithmes en intelligence artificielle. On distingue principalement **les modèles supervisés, non supervisés,** ainsi que certains qui se situent à la frontière entre les deux (parfois appelés **semi-supervisés** ou **par renforcement**).
 
-- **Un modèle supervisé** apprend à partir de données annotées. Par exemple, un dataset d’images avec des labels de classes (chien, chat, etc.). L'idée est de choisir un modèle f dont on va affiner les paramètres grâce à des algorithmes d'optimisation. J'en présente certains dans cette partie du même repo : https://github.com/JulienDesdo/AI-Projects/tree/main/theory/Levenberg-Marquardt. On peut citer le deep learning comme exemple emblématique : il ajuste les poids des réseaux de neurones progressivement au fil des itérations (via des algos comme la descente de gradient). J'explique le fonctionnement standard du deep-learning dans ce rapport :  https://github.com/JulienDesdo/AI-Projects/tree/main/theory/ADAM-MLP-Implementation/Rapport ADAM MLP-5-11.pdf. 
+- **Un modèle supervisé** apprend à partir de données annotées. Par exemple, un dataset d’images avec des labels de classes (chien, chat, etc.). L'idée est de choisir un modèle f dont on va affiner les paramètres grâce à des algorithmes d'optimisation. J'en présente certains dans cette partie du même repo : https://github.com/JulienDesdo/AI-Projects/tree/main/theory/Levenberg-Marquardt. On peut citer le deep learning comme exemple emblématique : il ajuste les poids des réseaux de neurones progressivement au fil des itérations (via des algos comme la descente de gradient). J'explique le fonctionnement standard du deep-learning dans ce rapport :  https://github.com/JulienDesdo/AI-Projects/blob/main/theory/ADAM-MLP-Implementation/Rapport%20ADAM%20MLP-5-11.pdf. 
 
 - **Un modèle non supervisé** n'apprend pas à partir de labels connus. Il se base uniquement sur la structure des données pour identifier des motifs ou des regroupements. Ce type d'apprentissage est souvent utilisé pour des tâches comme le clustering (voir l'optimisation mimétique, dans la partie 4 de mon rapport Monte Carlo :  https://github.com/JulienDesdo/AI-Projects/tree/main/theory/Mont-Carlo-Algorithms/Rapport-2-14.pdf) ou la réduction de dimensionnalité (PCA, largement utilisée en traitement d'images et de signaux).
 
@@ -29,8 +29,10 @@ C'est pourquoi avant de parler des réseaux de neurones renforcés, je vais parl
   #### *Vocabulaire clé*
   <br>
 
-  [DESSINS SOURIS LABYRINTHE] <br>
+  [DESSINS SOURIS LABYRINTHE] 
+  <br>
   Prenons l'exemple d'un souris dans un labyrinthe. La modélisation d'un environnement RL repose sur les precepts suivants : 
+  
   [SCHEMA AGENT, ENV, ACTION] <br>
 
   Travailler en Q-Learning c'est d'abord identifier qui fait quoi dans notre cas concret par rapport aux éléments théoriques nécessaires. Ici, **l'environnement (E)** est le labyrinthe car il constitue l'ensemble de toutes les case possibles. Il possède des **rewards (R)** (fromage) et des **malus** (éclair). L'agent est la souris qui se déplace dans le labyrinthe et a quatre options possibles (**actions (A)**) qu'elle peut effectuer sur l'environnement (si celui ci le permet) : aller en bas, haut, gauche, droite. Ce schéma est la base de la théorie du RL. L'idée est que l'agent va explorer son environnement et chercher à cumuler un maximum de points (reward) en evitant les malus. Le but ultime serait de chercher le "largets accumulted reward over a sequence of actions". Et du coup on peut voir le reward comme une indication à l'agent s'il est en train de réussir sa mission ou non ("Indication of agent performance"). 
@@ -57,21 +59,21 @@ Naturellement, puisque le passage d'un état à un autre se fait en probabilité
 
 [SCHEMA MATRICE CORRESPONDANTE]
 <br>
-On appelle de cela la **matrice de probabilité (P)** du système. On pourrait donc dire que le systeme c'est : **l'ensemble des états (S) & la matrice de transistion d'état (P)**
+On appelle de cela la **matrice de transition (P)** du système. On pourrait donc dire que le systeme c'est : **l'ensemble des états (S) & la matrice de transition d'état (P)**
 <br>
 Precisions de vocabulaire : 
 - **Chaine de markov** : ensemble d'états liés entre eux : state1 -> state2 -> ... -> stateN) ; 
-- **History** : Séquence d'obersation à travers le temps (exemple : [A, B, C, A, A, B...]) ; 
+- **History** : Séquence d'observation à travers le temps (exemple : [A, B, C, A, A, B...]) ; 
 - **Episode** :  extraire l'observation de l'état de transition ;  
 
 **2° Markov Reward Process (MRP)** <br>
 
-Seulement, le probleme principal de cette méthode est qu'il n'y a aucune prévoyance. En effet, si la souris a le choix entre un éclair en haut et un fromage en bas. Mais que dans le premier cas, l'éclair est suivi de 100 fromages et dans l'autre suivi de 100 éclairs. La souris choisira un fromage et 100 eclairs. Ce qui donne une souris grillée.<br>
-C'est pouquoi on introduit les **MARKOV REWARD PROCESS**. On introduit une variable aléatoire qui symabolise le gain de l'agent sur une episode. Cela s'écrit : 
+Seulement, le problème principal de cette méthode est qu'il n'y a aucune prévoyance. En effet, si la souris a le choix entre un éclair en haut et un fromage en bas. Mais que dans le premier cas, l'éclair est suivi de 100 fromages et dans l'autre suivi de 100 éclairs. La souris choisira un fromage et 100 eclairs. Ce qui donne une souris grillée.<br>
+C'est pouquoi on introduit les **MARKOV REWARD PROCESS**. On introduit une variable aléatoire qui symbolise le gain de l'agent sur une episode. Cela s'écrit : 
 
 [FORMULE Gt avec somme] 
 
-**γ est le facteur de prévoyance de l'agent entre 0 et 1**. Cela a pour but d'évaluer la valeur d'un état que l'on choisit en tenant compte de recompances à plus ou moins long terme. Evaluer les recompanses à long terme sur un episode c'est approcher γ de 1, sinon rapprocher γ de 0 c'est choisir le gain maximum immédiat au risque d'y perdre plus (c'est le cas précédent). La value of state V(s) s'exprime : 
+**γ est le facteur de prévoyance de l'agent entre 0 et 1**. Cela a pour but d'évaluer la valeur d'un état que l'on choisit en tenant compte de récompenses à plus ou moins long terme. Evaluer les recompanses à long terme sur un episode c'est approcher γ de 1, sinon rapprocher γ de 0 c'est choisir le gain maximum immédiat au risque d'y perdre plus (c'est le cas précédent). La value of state V(s) s'exprime : 
 
 [Equation V(S) = E[G | St=s]]
 
@@ -89,25 +91,95 @@ Il s'agit de l'**équation de Bellman simplifiée pour le cas MRP (markov reward
 Voici un **exemple** pour être un peu didactique : <br>
 États : S={A,B}, R(A)=5, R(B)=10, P(A∣A)=0.7, P(B∣A)=0.3, P(A∣B)=0.4, P(B∣B)=0.6. 
 <br>
-En appliquant Bellamn MRP, on a : 
+En appliquant l'équation de Bellman pour MRP, on a : 
 
 V(A)=5+0.9×[0.7V(A)+0.3V(B)] <br>
 V(B)=10+0.9×[0.4V(A)+0.6V(B)] <br>
 
 **3° Markov Decision Process (MDP)** <br>
 
+**Système Complet**
 
+Un dernier point important apparaît naturellement : comment l'agent doit-il agir ? Dois-je, en tant que souris, explorer de nouvelles zones du labyrinthe (au risque de tomber sur un piège), ou bien exploiter ce que je connais déjà pour maximiser mon gain immédiat ?
 
-On peut d'instinct remarquer un dernier probleme ? Comment explorer correctement son environnement, dois je en tant que souris, explorer ou exploiter le peu que j'ai exploré ? C'est tout le dilemne de l'agent qui doit à la fois posséder des données pour pouvoir prédire ensuite mais en même temps,
-   La solution consiste en fait à predire la solution en fonction de calcul de Q-value, et de changer la manière dont on choisit ses valeurs à mesure que l'on explore son environnemnt : la selection d'un Q-value s'appelle une politique. Trouver les politique optimale c'est obtenir pi*. On est là en plein de un schéma decisionnel : les markov decisions processes. Notre systeme est une matrice à trois dimensions : la matrice d'état auquel on adjoint nos actions. 
+ Ce dilemme entre exploration et exploitation est central en apprentissage par renforcement.
 
-(bon des choses à reprécciser!).   
--> probleme d'evolution des actions resolus par decisions process, là où les actions sont figés dans le cas du reward process. 
+Pour modéliser ça, on utilise ce qu'on appelle un Markov Decision Process (MDP). C’est la suite logique du MRP, sauf qu’ici on prend en compte les actions de l'agent. Dans un MDP : <br>
+
+- À chaque **état s**, l'agent peut choisir une **action a** parmi un ensemble d’actions possibles.
+- Chaque **couple (s,a)** conduit à une transition vers un nouvel état s′ avec une probabilité P(s′∣s,a), et offre une récompense R(s,a).
+
+Résultat : le système devient une **matrice à trois dimensions** : Pour un état s on possède plusieurs actions réalisable. Dans le cas de la souris, on a une **matrice tri-dimensionnelle de taille 4x4x4 (longueur x largeur x actions)**. 
+
+[schéma matrice en 3D]
+
+La question est maintenant de savoir ce que contient cette matrice ? Elle contient en réalité les Q-values, qui aide à la prise de décision à l'aide de la politique. 
+
+**Equation de Bellman**
+
+Mais au fait, ces fameuses Q-values, c’est quoi ?
+
+Eh bien c’est là qu’arrive l'équation de Bellman, qui fait le lien entre tout ce qu’on a vu avant : état, action, récompense, probabilité de transition. L’idée : calculer pour chaque couple (état, action) la “valeur” de cette action (ce qu’on peut espérer gagner en la prenant).
+
+[equation de bellman compllete avec politique pi, value of state, reward et la proba]
+
+- **γ** est le facteur de prévoyance (déjà vu avant).
+- La somme parcourt tous les états accessibles après **(s,a)**, avec la meilleure action suivante.
+- **π** est la politique (expliqué dans la suite). 
+
+Concrètement, dans notre exemple de la souris, à chaque case s, elle peut aller en haut, bas, gauche, droite. On a donc pour un état s donnée : **Q(s,haut), Q(s,bas), Q(s,droite), Q(s,gauche)**. 
+
 <br>
 
-  #### Q-Tables, Bellman Equation, Politiques, Algorithme
-<br> <br>
+**Politique**
 
+La politique consiste donc à sélectionner une valeur Q-value à un état s, donc choisir une action à effectuer pour stocker la Q-value associée. Simplement **Politique : Stratégie pour choisir les actions a**. Mais qu'est ce qu'une bonne politique ? Comment la choisir ? <br>
+
+Tout dépend de ce que l'on veut faire, tout d'abord rappelons que même si γ est surtout le facteur de prévoyance, il a aussi un impact indirect sur l'exploration. En effet : 
+ - γ proche de 0 → l’agent ne cherche que le gain immédiat (exploration très locale).
+ - γ proche de 1 → il regarde loin dans le futur et peut apprendre des stratégies globales même s'il n'a pas exploré tout à fond. Pour faire simple, les états peu visités peuvent être “appris par approximation” grâce à la propagation des valeurs via γ. <br>
+
+La politique est à la fois la sélection des Q-value pour un bon apprentissage. Mais tout dépend de ce que l'on veut faire. A la manière de γ qui permet soit une exploration gloal ou locale, la politique permet de faire la même chose. <br>
+
+On a : <br>
+- **Greedy** : choisir toujours l’action qui a la meilleure Q-value. A utiliser une fois que l'on a suffisement appris. π(s) = argmax[a]( Q(s,a) )
+- **Epsilon-Greedy** : on choisit un action aléatoire avec un paramètre epsilon (exploration) ou on minimise Q(s,a) (exploitation)
+- **Déterministe** : toujours la même action pour un état donné. π(s)=a
+- **Stochastique** : on tire au hasard en fonction d’une proba. π(a/s) = P(At=a/St=s)
+
+Ainsi selon notre choix de politique on fait soit : <br>
+- De **l'exploration** : tester de nouvelles actions pour découvrir des chemins ou des stratégies qu’on ne connaît pas encore.
+- De **l'exploitation** : utiliser ce qu’on a déjà appris pour maximiser le gain à court terme.
+
+L’exploration permet d’éviter de passer à côté d’une meilleure solution (même si ça peut coûter cher sur le moment), alors que l’exploitation permet de capitaliser tout de suite sur ce qu’on pense être la meilleure stratégie. Trouver le bon équilibre entre les deux est essentiel pour apprendre efficacement. **C’est donc un enjeu majeur pour tout système RL, y compris dans des méthodes avancées comme les DQN ou PPO, où l’on cherche à apprendre des politiques plus sophistiquées pour mieux gérer ce compromis.** <br>
+
+**Programmabilité** 
+<br>
+À partir de là, le schéma est clair :
+1️⃣ Pour un état s, je calcule Q(s,a) pour toutes les actions.
+2️⃣ Je choisis mon action selon la politique.
+3️⃣ Je fais l’action, j’observe la récompense + le nouvel état.
+4️⃣ Je mets à jour Q(s,a).
+5️⃣ Je recommence.
+
+[schéma algo flow ici]
+
+Pour ce qui est de la Q-table au début on l'initilise soit à 0 soit avec des valeurs aléatoires. Qu'en est t il des matrices (R) et (P) ? 
+Dnas les cas pratiques on ne connait pas forcement les matrices de transitions. Donc : 
+- Cas où R et P sont connus : on peut appliquer directement Bellman (programmation dynamique, itération de valeur, etc.). C'est l'équation de Bellamn. 
+- Cas où R et P sont inconnus (la norme en pratique) : → on apprend en essayant : Q-learning (l'agent découvre tout seul les “poids” réels de R et P).
+
+A noter que j'ai supposé que les fonctions P(s′ ∣ s,a) et R(s,a) sont connues. C'est le cas "idéal" où l'environnement est parfaitement modélisé, ce qui permet d'appliquer directement l'équation de Bellman. Ces informations sont en fait souvent inconnues : l'agent doit les découvrir par essai/erreur (ex : Q-learning). On différencie donc : 
+
+| **Type de RL**                 | **Modèle connu (modèle-based RL)**                                                                 | **Modèle inconnu (modèle-free RL)**                                               |
+|---------------------------------|---------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
+| **Définition**                  | L'agent connaît la fonction de transition \( P(s'|s,a) \) et la récompense \( R(s,a) \).         | L'agent ne connaît ni \( P \) ni \( R \).                                         |
+| **Méthode d'apprentissage**     | Utilise directement les équations théoriques (ex : Bellman).                                      | Apprend en expérimentant (essai/erreur).                                          |
+| **Exemples d'algos**            | Programmation dynamique, Value Iteration, Policy Iteration.                                       | Q-learning, SARSA, DQN, PPO...                                                    |
+| **Avantages**                   | Solution exacte si le modèle est parfaitement connu.                                             | Plus flexible : fonctionne même sans modèle précis.                               |
+| **Inconvénients**               | Nécessite de connaître l'environnement (souvent irréaliste).                                      | Peut être long à apprendre et nécessiter beaucoup d'essais.                       |
+
+<br>
 
   #### Limites du Q-Learning 
   <br> 
