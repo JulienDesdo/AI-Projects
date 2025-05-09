@@ -78,7 +78,7 @@ C'est pouquoi on introduit les **MARKOV REWARD PROCESS**. On introduit une varia
 ![Equation V(S) = E[G | St=s]](images-doc/value-of-state.png) 
 
 On peut réécrire cette formule un peu abstraite en une qui s'applique directement au cas du système à état : <br>
-![V(s)=R(s)+γs′∑​P(s′∣s)V(s′)](images-doc/Bellman-simplifie.png)
+![V(s)=R(s)+γs′∑​P(s′∣s)V(s′)](images-doc/Bellman-simplifiee.png)
 
 Il s'agit de l'**équation de Bellman simplifiée pour le cas MRP (markov reward process)**. En analysant la formule on voit bien que tout notre procédé revient à obtenir le systeme suivant : 
 <br>
