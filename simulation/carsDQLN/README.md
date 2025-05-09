@@ -208,7 +208,7 @@ Avantages : <br>
 
 Comme expliqué précédemment, dans le DQN, la Q-Table est remplacée par un réseau de neurones profond. Le réseau apprend à approximer la fonction Q-value :
 
-[loss-formula-Q-network](images-doc/loss-formula-Q-netowrk.png)
+![loss-formula-Q-network](images-doc/loss-formula-Q-netowrk.png)
 
 Pour rappel : 
 - **θ** : les paramètres (poids) du réseau principal (policy network),
@@ -221,7 +221,7 @@ Pour rappel :
 L'objectif est de réduire la différence entre ce que le réseau estime Q(s,a) et ce qu'il “devrait” valoir selon Bellman (la cible).
 
 Dans l'idée : 
-[neural-network-Q-values](images-doc/neural-network-Q-values.png)
+![neural-network-Q-values](images-doc/neural-network-Q-values.png)
 
 Mais on rencontre plusieurs problèmes.
 - **Probleme : Corrélation temporelle entre expériences** : Quand on utilise juste un réseau, chaque nouvelle expérience influence directement l’apprentissage ➔ cela crée une corrélation temporelle forte entre les expériences consécutives, ce qui peut rendre l’apprentissage instable.
@@ -233,9 +233,9 @@ On a donc 2 réseaux de neurones :
 - **Policy Network (réseau principal)** : celui qui est entraîné activement pour approximer Q(s,a)
 - **Target Network (réseau cible)** : une copie figée temporairement du policy network, utilisée pour calculer la cible de Bellman.
 
-[schema-DQN](images-doc/schema-DQN.png) 
+![schema-DQN](images-doc/schema-DQN.png) 
 
-Etapes du proessus DQN : 
+Etapes du proessus DQN : <br>
 1️⃣ Policy Network (Entraînement) : Le réseau principal prend en entrée un état (par ex. la position de la voiture sous forme de vecteur ou image) et prédit les Q-values pour toutes les actions possibles. <br>
 2️⃣ Target Network (Cible) : Sert à calculer la cible Bellman R+γmax⁡a′Q(s′,a′)R+γmaxa′​Q(s′,a′) avec des poids figés. <br>
 3️⃣ Action : L'agent choisit une action selon sa politique (par ex. epsilon-greedy) et l’exécute dans l’environnement. <br>
@@ -251,7 +251,7 @@ Référez-vous à cette vidéo pour entrer plus dans les détails :
 
 ## 🛠️Programme
 
-Après cet partie théorique, voyons comment fonctionne globalement le programme. C’est un **simulateur 2D** où une voiture doit apprendre à atteindre une ligne d’arrivée toute seule. Pour ça, il fallait évidemment coder :
+Après cet partie théorique, voyons comment fonctionne globalement le programme. C’est un **simulateur 2D** où une voiture doit apprendre à atteindre une ligne d’arrivée toute seule. Pour ça, il fallait évidemment coder : <br>
 1️⃣ la **voiture elle-même** (comment elle se déplace, comment elle “voit” la piste), <br>
 2️⃣ la **piste** (où est la route, où est l’arrivée, etc.), <br>
 3️⃣ et surtout un **environnement Gym** qui permette d’interfacer tout ça avec un algorithme DQN prêt à entraîner l’agent. <br>
@@ -271,8 +271,8 @@ Enfin côté IA : j'utilise la lib **Stable-Baselines3**, qui permet d’entraî
 En résumé : tout le bazar théorique sur le RL a été traduit ici en un circuit 2D, une voiture équipée de capteurs qui “sent” la route, et un système d’entraînement/test basé sur des DQNs modernes. L’agent apprend par essais/erreurs à conduire sur la piste, exactement comme on l’a vu dans les bases théoriques, mais cette fois en pratique.
 
 Pour plus de détails sur la structure du code, voici les diagrammes générés automatiquement :
-[Diagramme des classes](images-doc/classes_CarsDQLN.png)
-[Diagramme des dépendances](images-doc/packages_CarsDQLN.png)
+![Diagramme des classes](images-doc/classes_CarsDQLN.png)
+![Diagramme des dépendances](images-doc/packages_CarsDQLN.png)
 
 La documentation complète (HTML) est dispo dans le dossier ![html/index.html](html/index.html). <br>
 
