@@ -206,7 +206,46 @@ Avantages : <br>
 
 ### Deep-Q-Networks 
 
-Enumeration des etapes, lien vers video. 1,...10. Policy Network (train), Target Network, Q-Values... 
+Comme expliqué précédemment, dans le DQN, la Q-Table est remplacée par un réseau de neurones profond. Le réseau apprend à approximer la fonction Q-value :
+
+[loss-formula-Q-network](images-doc/loss-formula-Q-network.png)
+
+Pour rappel : 
+- **θ** : les paramètres (poids) du réseau principal (policy network),
+- **θ−** : les paramètres du réseau cible (target network),
+- **R** : la récompense obtenue,
+- **γ** : facteur de prévoyance,
+- **s,a** : état et action courante,
+- **s′,a′** : état suivant et toutes les actions possibles.
+
+L'objectif est de réduire la différence entre ce que le réseau estime Q(s,a) et ce qu'il “devrait” valoir selon Bellman (la cible).
+
+Dans l'idée : 
+[neural-network-Q-values](images-doc/neural-network-Q-values.png)
+
+Mais on rencontre plusieurs problèmes.
+- **Probleme : Corrélation temporelle entre expériences** : Quand on utilise juste un réseau, chaque nouvelle expérience influence directement l’apprentissage ➔ cela crée une corrélation temporelle forte entre les expériences consécutives, ce qui peut rendre l’apprentissage instable.
+- **Solution : Experience Replay** : On stocke toutes les expériences passées sous forme de tuples (s,a,r,s′)(s,a,r,s′) dans une mémoire tampon (replay buffer). Lors de l’apprentissage, on échantillonne aléatoirement des mini-lots à partir de ce buffer. ➔ Cela brise la corrélation temporelle entre expériences successives et rend l’apprentissage plus stable.
+- **Problème : Instabilité des cibles Q** : Si on met à jour en permanence le même réseau pour prédire ET évaluer les cibles Q(s′,a′), le modèle peut devenir instable ou même diverger.
+- **Solution : Target Network** : On introduit un second réseau stable, le target network. Ce réseau est copié périodiquement (tous les N épisodes par ex.) à partir du réseau principal. Cela permet de garder des cibles fixes pendant un certain temps, ce qui stabilise l'apprentissage. 
+
+On a donc 2 réseaux de neurones : 
+- **Policy Network (réseau principal)** : celui qui est entraîné activement pour approximer Q(s,a)
+- **Target Network (réseau cible)** : une copie figée temporairement du policy network, utilisée pour calculer la cible de Bellman.
+
+[schema-DQN](images-doc/schema-DQN.png) 
+
+Etapes du proessus DQN : 
+1️⃣ Policy Network (Entraînement) : Le réseau principal prend en entrée un état (par ex. la position de la voiture sous forme de vecteur ou image) et prédit les Q-values pour toutes les actions possibles. <br>
+2️⃣ Target Network (Cible) : Sert à calculer la cible Bellman R+γmax⁡a′Q(s′,a′)R+γmaxa′​Q(s′,a′) avec des poids figés. <br>
+3️⃣ Action : L'agent choisit une action selon sa politique (par ex. epsilon-greedy) et l’exécute dans l’environnement. <br>
+4️⃣ Stockage : On stocke (s,a,r,s′)(s,a,r,s′) dans la Replay Memory. <br>
+5️⃣ Apprentissage : À chaque itération, on échantillonne un mini-lot d’expériences du buffer, on passe les états dans le policy network, on calcule les cibles via le target network, et on met à jour les poids du policy network par rétropropagation. <br>
+6️⃣ Mise à jour périodique : Tous les N épisodes, on copie les poids du policy network dans le target network. <br>
+7️⃣ 🔁 Répéter le processus jusqu’à convergence. <br>
+
+Référez-vous à cette vidéo pour entrer plus dans les détails :
+🎥 [Deep Q-Learning/Deep Q-Network (DQN) Explained | Python Pytorch Deep Reinforcement Learning](https://www.youtube.com/watch?v=EUrWGTCGzlA)
 
 ---
 
@@ -215,7 +254,7 @@ Enumeration des etapes, lien vers video. 1,...10. Policy Network (train), Target
 Concretement : Libs de reinforcement, stable baseline pour les réseaux de neurones. 
 Diagramme de classes ? 
 Fonctionnalités. 
-Explication code + Générer eventuellement docs (doxygen?) du script. 
+
 
 
 ---
