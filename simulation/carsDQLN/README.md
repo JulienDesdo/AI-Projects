@@ -11,7 +11,7 @@ J'ai donc décidé – pour mieux comprendre ces algorithmes – de développer 
 
 ---
 
-## Bases Théroriques 
+## 🧠 Bases Théroriques 
 
 Tout d'abord, rappelons qu'il existe différentes catégories d'algorithmes en intelligence artificielle. On distingue principalement **les modèles supervisés, non supervisés,** ainsi que certains qui se situent à la frontière entre les deux (parfois appelés **semi-supervisés** ou **par renforcement**).
 
@@ -210,7 +210,7 @@ Enumeration des etapes, lien vers video. 1,...10. Policy Network (train), Target
 
 ---
 
-## Programme
+## 🛠️Programme
 
 Concretement : Libs de reinforcement, stable baseline pour les réseaux de neurones. 
 Diagramme de classes ? 
