@@ -139,10 +139,12 @@ Tout dépend de ce que l'on veut faire, tout d'abord rappelons que même si γ e
  - γ proche de 0 → l’agent ne cherche que le gain immédiat (exploration très locale).
  - γ proche de 1 → il regarde loin dans le futur et peut apprendre des stratégies globales même s'il n'a pas exploré tout à fond. Pour faire simple, les états peu visités peuvent être “appris par approximation” grâce à la propagation des valeurs via γ. <br>
 
+En théorie, pour apprendre correctement, chaque couple (état, action) doit être exploré suffisamment. Mais en pratique, **quand γ est élevé, l’agent peut “deviner” ou approcher la valeur de certains états peu visités, car les récompenses futures se propagent dans le calcul via l'équation de Bellman.**
+
 La politique est à la fois la sélection des Q-value pour un bon apprentissage. Mais tout dépend de ce que l'on veut faire. A la manière de γ qui permet soit une exploration gloal ou locale, la politique permet de faire la même chose. <br>
 
 On a : <br>
-- **Greedy** : choisir toujours l’action qui a la meilleure Q-value. A utiliser une fois que l'on a suffisement appris. π(s) = argmax[a]( Q(s,a) )
+- **Greedy** : choisir toujours l’action qui a la meilleure Q-value. A utiliser une fois que l'on a suffisement appris. π(s) = argmax[a] (Q(s,a))
 - **Epsilon-Greedy** : on choisit un action aléatoire avec un paramètre epsilon (exploration) ou on minimise Q(s,a) (exploitation)
 - **Déterministe** : toujours la même action pour un état donné. π(s)=a
 - **Stochastique** : on tire au hasard en fonction d’une proba. π(a/s) = P(At=a/St=s)
@@ -155,17 +157,17 @@ L’exploration permet d’éviter de passer à côté d’une meilleure solutio
 
 **Programmabilité** 
 <br>
-À partir de là, le schéma est clair :
-1️⃣ Pour un état s, je calcule Q(s,a) pour toutes les actions.
-2️⃣ Je choisis mon action selon la politique.
-3️⃣ Je fais l’action, j’observe la récompense + le nouvel état.
-4️⃣ Je mets à jour Q(s,a).
-5️⃣ Je recommence.
+À partir de là, le schéma est clair : <br>
+1️⃣ Pour un état s, je calcule Q(s,a) pour toutes les actions. <br>
+2️⃣ Je choisis mon action selon la politique. <br>
+3️⃣ Je fais l’action, j’observe la récompense + le nouvel état. <br>
+4️⃣ Je mets à jour Q(s,a). <br>
+5️⃣ Je recommence. <br>
 
 [schéma algo flow ici]
 
 Pour ce qui est de la Q-table au début on l'initilise soit à 0 soit avec des valeurs aléatoires. Qu'en est t il des matrices (R) et (P) ? 
-Dnas les cas pratiques on ne connait pas forcement les matrices de transitions. Donc : 
+Dans les cas pratiques on ne connait pas forcement les matrices de transitions. Donc : 
 - Cas où R et P sont connus : on peut appliquer directement Bellman (programmation dynamique, itération de valeur, etc.). C'est l'équation de Bellamn. 
 - Cas où R et P sont inconnus (la norme en pratique) : → on apprend en essayant : Q-learning (l'agent découvre tout seul les “poids” réels de R et P).
 
@@ -173,7 +175,7 @@ A noter que j'ai supposé que les fonctions P(s′ ∣ s,a) et R(s,a) sont connu
 
 | **Type de RL**                 | **Modèle connu (modèle-based RL)**                                                                 | **Modèle inconnu (modèle-free RL)**                                               |
 |---------------------------------|---------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
-| **Définition**                  | L'agent connaît la fonction de transition \( P(s'|s,a) \) et la récompense \( R(s,a) \).         | L'agent ne connaît ni \( P \) ni \( R \).                                         |
+| **Définition**                  | L'agent connaît la fonction de transition \( P(s'/s,a) \) et la récompense \( R(s,a) \).         | L'agent ne connaît ni \( P \) ni \( R \).                                         |
 | **Méthode d'apprentissage**     | Utilise directement les équations théoriques (ex : Bellman).                                      | Apprend en expérimentant (essai/erreur).                                          |
 | **Exemples d'algos**            | Programmation dynamique, Value Iteration, Policy Iteration.                                       | Q-learning, SARSA, DQN, PPO...                                                    |
 | **Avantages**                   | Solution exacte si le modèle est parfaitement connu.                                             | Plus flexible : fonctionne même sans modèle précis.                               |
@@ -184,12 +186,23 @@ A noter que j'ai supposé que les fonctions P(s′ ∣ s,a) et R(s,a) sont connu
   #### Limites du Q-Learning 
   <br> 
 
-  Dans le cas de notre jeu de voiture, 
-  Environnement trop grand
-  Généralisation impossible
-  Impossibilité de traiter des entrées complexes
+Dans le cas de notre jeu de voiture, on se rend vite compte des limites du Q-Learning classique : <br>
+- **Environnement trop grand** : Si l’espace des états est énorme (par exemple, chaque case du circuit + la vitesse + l’angle + plein d'autres paramètres), la Q-table devient ingérable : il faut mémoriser chaque combinaison état-action.
+- **Scalabilité limitée** : Si l’état est une image (par exemple une vue du circuit en 2D ou 3D), c’est encore pire : impossible de stocker toutes les combinaisons image/action dans une simple table → explosion mémoire garantie.
+- **Généralisation impossible** : Le Q-learning ne généralise pas : deux états très proches (par ex. une voiture en (x=10,y=50,v=80 km/h)(x=10,y=50,v=80km/h) et une autre en (x=10.1,y=50,v=80 km/h)(x=10.1,y=50,v=80km/h)) sont traités comme des états totalement différents. ➔ Résultat : **Q(s1,a)≠Q(s2,a) même si s1≈s2**. Le Q-learning ne fait aucune différence : il ne "comprend" pas que ces deux états sont presque identiques.
+- **Exploration inefficace** : Dans un environnement très grand, l'agent va passer son temps à explorer des zones qui n'ont aucun intérêt. Il risque de passer à côté des bonnes zones ou d'apprendre trop lentement.
+<br>
 
+La conséquence ? Le Q-learning classique ne passe pas à l’échelle dès que l’environnement devient un peu trop complexe ou riche. <br>
 
+#### Solution : Deep Q-Network (DQN)
+
+L’idée clé est de remplacer la Q-table par un réseau de neurones profond (DNN) qui approxime Q(s,a)Q(s,a).Au lieu de stocker une valeur par (état, action), le modèle apprend une fonction qui prédit la Q-value à partir de l’état et de l’action. <br>
+
+Avantages : <br>
+- **Capacité de généralisation** : des états proches donneront des Q-values similaires.
+- **Scalabilité** : peut gérer des entrées complexes comme des images (ex : une caméra embarquée sur la voiture).
+- **Apprentissage plus efficace** : le réseau partage l'information entre états similaires, ce qui évite de devoir tout explorer case par case.
 
 ### Deep-Q-Networks 
 
