@@ -1,7 +1,39 @@
+"""
+@file menu.py
+@brief Module gérant le menu principal (interface utilisateur Pygame).
+
+@details
+Permet à l'utilisateur de :
+- Choisir la carte de course.
+- Sélectionner le mode de jeu (Joueur, TEST, ENTRAÎNEMENT).
+- Activer ou désactiver l'affichage des capteurs de vision.
+
+@classes:
+    - Menu: Interface utilisateur pour la configuration avant le lancement du jeu.
+"""
+
+
 import pygame
 import os
 
 class Menu:
+    """
+    @brief Classe représentant le menu principal (écran de configuration).
+
+    @attributes:
+        screen (pygame.Surface): Surface d'affichage.
+        font (pygame.Font): Police utilisée pour le texte.
+        options (list[str]): Liste des cartes disponibles.
+        modes (list[str]): Liste des modes disponibles.
+        show_vision (bool): True si les capteurs doivent être affichés.
+        selected_map (int): Index actuel de la carte sélectionnée.
+        selected_mode (int): Index actuel du mode sélectionné.
+        error_message (str|None): Message d'erreur affiché si besoin.
+
+    @note
+    - Les cartes par défaut sont : "Map 1", "Map 2", "Map 3", "Quitter".
+    - Les modes sont : "Joueur", "TEST", "ENTRAÎNEMENT".
+    """
     def __init__(self, screen):
         self.screen = screen
         self.font = pygame.font.Font(None, 48)
@@ -13,6 +45,14 @@ class Menu:
         self.error_message = None
 
     def draw(self):
+        """
+        @brief Dessine le menu (cartes, modes, options, messages) sur la surface d'affichage.
+
+        @details
+        - Les éléments actifs sont affichés en jaune, les autres en blanc.
+        - Affiche également un message d'erreur si nécessaire (en rouge).
+        - Met à jour l'écran avec pygame.display.flip().
+        """
         self.screen.fill((20, 20, 20))
 
         map_title = self.font.render("Sélectionner une carte", True, (200, 200, 200))
@@ -45,6 +85,23 @@ class Menu:
         pygame.display.flip()
 
     def run(self):
+        """
+        @brief Boucle principale du menu, attend la sélection de l'utilisateur.
+
+        @return tuple:
+            - selected_map (str): La carte choisie par l'utilisateur (ex: "Map 1").
+            - selected_mode (str): Le mode choisi (ex: "TEST").
+            - show_vision (bool): True si les capteurs de vision doivent être affichés.
+
+        @note
+        - Retourne (None, None, None) si l'utilisateur quitte sans sélection.
+        - Affiche un message d'erreur si le mode TEST est choisi sans modèle disponible.
+        - Contrôles clavier :
+            - UP/DOWN: navigue entre les cartes.
+            - LEFT/RIGHT: change le mode de jeu.
+            - V: toggle capteurs de vision.
+            - RETURN: valide la sélection.
+        """
         running = True
         while running:
             self.draw()

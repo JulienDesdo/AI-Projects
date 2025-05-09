@@ -1,0 +1,152 @@
+\doxysection{menu.\+Menu Class Reference}
+\hypertarget{classmenu_1_1_menu}{}\label{classmenu_1_1_menu}\index{menu.Menu@{menu.Menu}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmenu_1_1_menu_a437320a5a9700a2421a64ce326d13589}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \mbox{\hyperlink{classmenu_1_1_menu_a196f582632d42daa7f9ba9e3eae1375d}{screen}})
+\item 
+\mbox{\hyperlink{classmenu_1_1_menu_a7fbfc2c34b0a5c3b9300766cb4447061}{draw}} (self)
+\item 
+\mbox{\hyperlink{classmenu_1_1_menu_a6cef6799dd00bf4776fea67cba56ea7b}{run}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmenu_1_1_menu_a196f582632d42daa7f9ba9e3eae1375d}{screen}} = screen
+\item 
+\mbox{\hyperlink{classmenu_1_1_menu_ad8a0cee77db0a4f2531c5c745f2f1730}{font}} = pygame.\+font.\+Font(None, 48)
+\item 
+list \mbox{\hyperlink{classmenu_1_1_menu_a46e1862ca08582e0e1de612e6cd4cf07}{options}} = \mbox{[}"{}Map 1"{}, "{}Map 2"{}, "{}Map 3"{}, "{}Quitter"{}\mbox{]}
+\item 
+list \mbox{\hyperlink{classmenu_1_1_menu_a03b18d61f61d28f86761c8ca22b0b7da}{modes}} = \mbox{[}"{}Joueur"{}, "{}TEST"{}, "{}ENTRAÎ\+NEMENT"{}\mbox{]}
+\item 
+bool \mbox{\hyperlink{classmenu_1_1_menu_aad377f766bd77a33e6285c6189f21c9e}{show\+\_\+vision}} = True
+\item 
+int \mbox{\hyperlink{classmenu_1_1_menu_ab6c91dbfb90259f50d4cc1e0f6c46bab}{selected\+\_\+map}} = 0
+\item 
+int \mbox{\hyperlink{classmenu_1_1_menu_a97b0e5db71ede8ae714f45b09fb6284e}{selected\+\_\+mode}} = 0
+\item 
+str \mbox{\hyperlink{classmenu_1_1_menu_a57041715473c4037c96fd91642f119d3}{error\+\_\+message}} = None
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}@brief Classe représentant le menu principal (écran de configuration).
+
+@attributes:
+    screen (pygame.Surface): Surface d'affichage.
+    font (pygame.Font): Police utilisée pour le texte.
+    options (list[str]): Liste des cartes disponibles.
+    modes (list[str]): Liste des modes disponibles.
+    show_vision (bool): True si les capteurs doivent être affichés.
+    selected_map (int): Index actuel de la carte sélectionnée.
+    selected_mode (int): Index actuel du mode sélectionné.
+    error_message (str|None): Message d'erreur affiché si besoin.
+
+@note
+- Les cartes par défaut sont : "Map 1", "Map 2", "Map 3", "Quitter".
+- Les modes sont : "Joueur", "TEST", "ENTRAÎNEMENT".
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classmenu_1_1_menu_a437320a5a9700a2421a64ce326d13589}\index{menu.Menu@{menu.Menu}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!menu.Menu@{menu.Menu}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classmenu_1_1_menu_a437320a5a9700a2421a64ce326d13589} 
+menu.\+Menu.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{screen}{}\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classmenu_1_1_menu_a7fbfc2c34b0a5c3b9300766cb4447061}\index{menu.Menu@{menu.Menu}!draw@{draw}}
+\index{draw@{draw}!menu.Menu@{menu.Menu}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily \label{classmenu_1_1_menu_a7fbfc2c34b0a5c3b9300766cb4447061} 
+menu.\+Menu.\+draw (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Dessine le menu (cartes, modes, options, messages) sur la surface d'affichage.
+
+@details
+- Les éléments actifs sont affichés en jaune, les autres en blanc.
+- Affiche également un message d'erreur si nécessaire (en rouge).
+- Met à jour l'écran avec pygame.display.flip().
+\end{DoxyVerb}
+ \Hypertarget{classmenu_1_1_menu_a6cef6799dd00bf4776fea67cba56ea7b}\index{menu.Menu@{menu.Menu}!run@{run}}
+\index{run@{run}!menu.Menu@{menu.Menu}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily \label{classmenu_1_1_menu_a6cef6799dd00bf4776fea67cba56ea7b} 
+menu.\+Menu.\+run (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Boucle principale du menu, attend la sélection de l'utilisateur.
+
+@return tuple:
+    - selected_map (str): La carte choisie par l'utilisateur (ex: "Map 1").
+    - selected_mode (str): Le mode choisi (ex: "TEST").
+    - show_vision (bool): True si les capteurs de vision doivent être affichés.
+
+@note
+- Retourne (None, None, None) si l'utilisateur quitte sans sélection.
+- Affiche un message d'erreur si le mode TEST est choisi sans modèle disponible.
+- Contrôles clavier :
+    - UP/DOWN: navigue entre les cartes.
+    - LEFT/RIGHT: change le mode de jeu.
+    - V: toggle capteurs de vision.
+    - RETURN: valide la sélection.
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classmenu_1_1_menu_a57041715473c4037c96fd91642f119d3}\index{menu.Menu@{menu.Menu}!error\_message@{error\_message}}
+\index{error\_message@{error\_message}!menu.Menu@{menu.Menu}}
+\doxysubsubsection{\texorpdfstring{error\_message}{error\_message}}
+{\footnotesize\ttfamily \label{classmenu_1_1_menu_a57041715473c4037c96fd91642f119d3} 
+str menu.\+Menu.\+error\+\_\+message = None}
+
+\Hypertarget{classmenu_1_1_menu_ad8a0cee77db0a4f2531c5c745f2f1730}\index{menu.Menu@{menu.Menu}!font@{font}}
+\index{font@{font}!menu.Menu@{menu.Menu}}
+\doxysubsubsection{\texorpdfstring{font}{font}}
+{\footnotesize\ttfamily \label{classmenu_1_1_menu_ad8a0cee77db0a4f2531c5c745f2f1730} 
+menu.\+Menu.\+font = pygame.\+font.\+Font(None, 48)}
+
+\Hypertarget{classmenu_1_1_menu_a03b18d61f61d28f86761c8ca22b0b7da}\index{menu.Menu@{menu.Menu}!modes@{modes}}
+\index{modes@{modes}!menu.Menu@{menu.Menu}}
+\doxysubsubsection{\texorpdfstring{modes}{modes}}
+{\footnotesize\ttfamily \label{classmenu_1_1_menu_a03b18d61f61d28f86761c8ca22b0b7da} 
+menu.\+Menu.\+modes = \mbox{[}"{}Joueur"{}, "{}TEST"{}, "{}ENTRAÎ\+NEMENT"{}\mbox{]}}
+
+\Hypertarget{classmenu_1_1_menu_a46e1862ca08582e0e1de612e6cd4cf07}\index{menu.Menu@{menu.Menu}!options@{options}}
+\index{options@{options}!menu.Menu@{menu.Menu}}
+\doxysubsubsection{\texorpdfstring{options}{options}}
+{\footnotesize\ttfamily \label{classmenu_1_1_menu_a46e1862ca08582e0e1de612e6cd4cf07} 
+menu.\+Menu.\+options = \mbox{[}"{}Map 1"{}, "{}Map 2"{}, "{}Map 3"{}, "{}Quitter"{}\mbox{]}}
+
+\Hypertarget{classmenu_1_1_menu_a196f582632d42daa7f9ba9e3eae1375d}\index{menu.Menu@{menu.Menu}!screen@{screen}}
+\index{screen@{screen}!menu.Menu@{menu.Menu}}
+\doxysubsubsection{\texorpdfstring{screen}{screen}}
+{\footnotesize\ttfamily \label{classmenu_1_1_menu_a196f582632d42daa7f9ba9e3eae1375d} 
+menu.\+Menu.\+screen = screen}
+
+\Hypertarget{classmenu_1_1_menu_ab6c91dbfb90259f50d4cc1e0f6c46bab}\index{menu.Menu@{menu.Menu}!selected\_map@{selected\_map}}
+\index{selected\_map@{selected\_map}!menu.Menu@{menu.Menu}}
+\doxysubsubsection{\texorpdfstring{selected\_map}{selected\_map}}
+{\footnotesize\ttfamily \label{classmenu_1_1_menu_ab6c91dbfb90259f50d4cc1e0f6c46bab} 
+int menu.\+Menu.\+selected\+\_\+map = 0}
+
+\Hypertarget{classmenu_1_1_menu_a97b0e5db71ede8ae714f45b09fb6284e}\index{menu.Menu@{menu.Menu}!selected\_mode@{selected\_mode}}
+\index{selected\_mode@{selected\_mode}!menu.Menu@{menu.Menu}}
+\doxysubsubsection{\texorpdfstring{selected\_mode}{selected\_mode}}
+{\footnotesize\ttfamily \label{classmenu_1_1_menu_a97b0e5db71ede8ae714f45b09fb6284e} 
+int menu.\+Menu.\+selected\+\_\+mode = 0}
+
+\Hypertarget{classmenu_1_1_menu_aad377f766bd77a33e6285c6189f21c9e}\index{menu.Menu@{menu.Menu}!show\_vision@{show\_vision}}
+\index{show\_vision@{show\_vision}!menu.Menu@{menu.Menu}}
+\doxysubsubsection{\texorpdfstring{show\_vision}{show\_vision}}
+{\footnotesize\ttfamily \label{classmenu_1_1_menu_aad377f766bd77a33e6285c6189f21c9e} 
+bool menu.\+Menu.\+show\+\_\+vision = True}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{menu_8py}{menu.\+py}}\end{DoxyCompactItemize}

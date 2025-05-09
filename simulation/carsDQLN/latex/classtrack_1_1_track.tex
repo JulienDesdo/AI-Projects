@@ -1,0 +1,149 @@
+\doxysection{track.\+Track Class Reference}
+\hypertarget{classtrack_1_1_track}{}\label{classtrack_1_1_track}\index{track.Track@{track.Track}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classtrack_1_1_track_ad0a8d1c7cf1b973258aedde8961eeebb}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, map\+\_\+name, \mbox{\hyperlink{classtrack_1_1_track_a5e0605843970e24896cd78ade974b6be}{with\+\_\+images}}=True)
+\item 
+\mbox{\hyperlink{classtrack_1_1_track_a5f6265c2e864a3ff00dee99643e7dc1e}{get\+\_\+track}} (self)
+\item 
+\mbox{\hyperlink{classtrack_1_1_track_a743521c2607914f02531ce4b2fcf3f51}{draw\+\_\+track}} (self, screen)
+\item 
+\mbox{\hyperlink{classtrack_1_1_track_a2eebcf4a303527f39a752af1937ea477}{is\+\_\+on\+\_\+road}} (self, x, y)
+\item 
+\mbox{\hyperlink{classtrack_1_1_track_ae8f8ad9ffa2ead4de4bf286be875f56e}{point\+\_\+to\+\_\+segment\+\_\+distance}} (self, px, py, x1, y1, x2, y2)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classtrack_1_1_track_a162246288419136b0ccb2937d30d0f53}{road\+\_\+width}} = 120
+\item 
+\mbox{\hyperlink{classtrack_1_1_track_a5e0605843970e24896cd78ade974b6be}{with\+\_\+images}} = with\+\_\+images
+\item 
+list \mbox{\hyperlink{classtrack_1_1_track_a42c75a21c7097de924214c96d3086f21}{track}} = \mbox{[}(100, 300), (300, 300), (500, 500), (700, 500), (900, 300), (1100, 300)\mbox{]}
+\item 
+list \mbox{\hyperlink{classtrack_1_1_track_a3db4b2708ddd3827a7f5f526528d300d}{finish\+\_\+pos}} = self.\+track\mbox{[}-\/1\mbox{]}
+\item 
+\mbox{\hyperlink{classtrack_1_1_track_a5b4c5a6f59c935ef90dd960217f3a880}{terminus\+\_\+img}} = pygame.\+image.\+load("{}assets/terminus\+\_\+line.\+png"{}).convert\+\_\+alpha()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}@brief Classe représentant la piste (track) sur laquelle roule le véhicule.
+
+@param map_name str: Nom de la carte à charger (ex: "Map 1", "Map 2", ...).
+@param with_images bool: True pour afficher une image de ligne d'arrivée, False sinon.
+
+@attributes:
+    - road_width (int): Largeur de la piste en pixels.
+    - track (list): Liste des points (x, y) qui forment la piste.
+    - finish_pos (tuple): Position (x, y) de la ligne d'arrivée.
+    - terminus_img (pygame.Surface): Image utilisée pour afficher la ligne d'arrivée (peut être None).
+
+@example
+    track = Track("Map 1")
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classtrack_1_1_track_ad0a8d1c7cf1b973258aedde8961eeebb}\index{track.Track@{track.Track}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!track.Track@{track.Track}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classtrack_1_1_track_ad0a8d1c7cf1b973258aedde8961eeebb} 
+track.\+Track.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{map\+\_\+name}{, }\item[{}]{with\+\_\+images}{ = {\ttfamily True}}\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classtrack_1_1_track_a743521c2607914f02531ce4b2fcf3f51}\index{track.Track@{track.Track}!draw\_track@{draw\_track}}
+\index{draw\_track@{draw\_track}!track.Track@{track.Track}}
+\doxysubsubsection{\texorpdfstring{draw\_track()}{draw\_track()}}
+{\footnotesize\ttfamily \label{classtrack_1_1_track_a743521c2607914f02531ce4b2fcf3f51} 
+track.\+Track.\+draw\+\_\+track (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{screen}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Dessine la piste et la ligne d'arrivée sur la fenêtre Pygame.
+
+@param screen pygame.Surface: Surface où dessiner la piste.
+
+@details
+- Trace la piste en reliant les points avec des lignes grises épaisses.
+- Affiche l'image de la ligne d'arrivée si activée.
+\end{DoxyVerb}
+ \Hypertarget{classtrack_1_1_track_a5f6265c2e864a3ff00dee99643e7dc1e}\index{track.Track@{track.Track}!get\_track@{get\_track}}
+\index{get\_track@{get\_track}!track.Track@{track.Track}}
+\doxysubsubsection{\texorpdfstring{get\_track()}{get\_track()}}
+{\footnotesize\ttfamily \label{classtrack_1_1_track_a5f6265c2e864a3ff00dee99643e7dc1e} 
+track.\+Track.\+get\+\_\+track (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\Hypertarget{classtrack_1_1_track_a2eebcf4a303527f39a752af1937ea477}\index{track.Track@{track.Track}!is\_on\_road@{is\_on\_road}}
+\index{is\_on\_road@{is\_on\_road}!track.Track@{track.Track}}
+\doxysubsubsection{\texorpdfstring{is\_on\_road()}{is\_on\_road()}}
+{\footnotesize\ttfamily \label{classtrack_1_1_track_a2eebcf4a303527f39a752af1937ea477} 
+track.\+Track.\+is\+\_\+on\+\_\+road (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{x}{, }\item[{}]{y}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Vérifie si un point (x, y) est sur la piste ou hors piste.
+
+@param x float: Coordonnée X du point.
+@param y float: Coordonnée Y du point.
+
+@return bool: True si le point est sur la piste, False sinon.
+
+@details
+- Calcule la distance la plus proche entre le point et les segments de la piste.
+- Compare avec la moitié de la largeur de la piste.
+\end{DoxyVerb}
+ \Hypertarget{classtrack_1_1_track_ae8f8ad9ffa2ead4de4bf286be875f56e}\index{track.Track@{track.Track}!point\_to\_segment\_distance@{point\_to\_segment\_distance}}
+\index{point\_to\_segment\_distance@{point\_to\_segment\_distance}!track.Track@{track.Track}}
+\doxysubsubsection{\texorpdfstring{point\_to\_segment\_distance()}{point\_to\_segment\_distance()}}
+{\footnotesize\ttfamily \label{classtrack_1_1_track_ae8f8ad9ffa2ead4de4bf286be875f56e} 
+track.\+Track.\+point\+\_\+to\+\_\+segment\+\_\+distance (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{px}{, }\item[{}]{py}{, }\item[{}]{x1}{, }\item[{}]{y1}{, }\item[{}]{x2}{, }\item[{}]{y2}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Calcule la distance entre un point et un segment de droite.
+
+@param px float: Coordonnée X du point.
+@param py float: Coordonnée Y du point.
+@param x1 float: Coordonnée X du premier point du segment.
+@param y1 float: Coordonnée Y du premier point du segment.
+@param x2 float: Coordonnée X du second point du segment.
+@param y2 float: Coordonnée Y du second point du segment.
+
+@return float: Distance minimale entre le point et le segment.
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classtrack_1_1_track_a3db4b2708ddd3827a7f5f526528d300d}\index{track.Track@{track.Track}!finish\_pos@{finish\_pos}}
+\index{finish\_pos@{finish\_pos}!track.Track@{track.Track}}
+\doxysubsubsection{\texorpdfstring{finish\_pos}{finish\_pos}}
+{\footnotesize\ttfamily \label{classtrack_1_1_track_a3db4b2708ddd3827a7f5f526528d300d} 
+list track.\+Track.\+finish\+\_\+pos = self.\+track\mbox{[}-\/1\mbox{]}}
+
+\Hypertarget{classtrack_1_1_track_a162246288419136b0ccb2937d30d0f53}\index{track.Track@{track.Track}!road\_width@{road\_width}}
+\index{road\_width@{road\_width}!track.Track@{track.Track}}
+\doxysubsubsection{\texorpdfstring{road\_width}{road\_width}}
+{\footnotesize\ttfamily \label{classtrack_1_1_track_a162246288419136b0ccb2937d30d0f53} 
+int track.\+Track.\+road\+\_\+width = 120}
+
+\Hypertarget{classtrack_1_1_track_a5b4c5a6f59c935ef90dd960217f3a880}\index{track.Track@{track.Track}!terminus\_img@{terminus\_img}}
+\index{terminus\_img@{terminus\_img}!track.Track@{track.Track}}
+\doxysubsubsection{\texorpdfstring{terminus\_img}{terminus\_img}}
+{\footnotesize\ttfamily \label{classtrack_1_1_track_a5b4c5a6f59c935ef90dd960217f3a880} 
+track.\+Track.\+terminus\+\_\+img = pygame.\+image.\+load("{}assets/terminus\+\_\+line.\+png"{}).convert\+\_\+alpha()}
+
+\Hypertarget{classtrack_1_1_track_a42c75a21c7097de924214c96d3086f21}\index{track.Track@{track.Track}!track@{track}}
+\index{track@{track}!track.Track@{track.Track}}
+\doxysubsubsection{\texorpdfstring{track}{track}}
+{\footnotesize\ttfamily \label{classtrack_1_1_track_a42c75a21c7097de924214c96d3086f21} 
+track.\+Track.\+track = \mbox{[}(100, 300), (300, 300), (500, 500), (700, 500), (900, 300), (1100, 300)\mbox{]}}
+
+\Hypertarget{classtrack_1_1_track_a5e0605843970e24896cd78ade974b6be}\index{track.Track@{track.Track}!with\_images@{with\_images}}
+\index{with\_images@{with\_images}!track.Track@{track.Track}}
+\doxysubsubsection{\texorpdfstring{with\_images}{with\_images}}
+{\footnotesize\ttfamily \label{classtrack_1_1_track_a5e0605843970e24896cd78ade974b6be} 
+track.\+Track.\+with\+\_\+images = with\+\_\+images}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{track_8py}{track.\+py}}\end{DoxyCompactItemize}

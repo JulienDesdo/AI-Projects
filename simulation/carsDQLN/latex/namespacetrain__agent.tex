@@ -1,0 +1,79 @@
+\doxysection{train\+\_\+agent Namespace Reference}
+\hypertarget{namespacetrain__agent}{}\label{namespacetrain__agent}\index{train\_agent@{train\_agent}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacetrain__agent_afd4773a5d97cce6b48aa3609d8da60fe}{train\+\_\+model}} (map\+\_\+name="{}Map 1"{}, total\+\_\+timesteps=300000)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+str \mbox{\hyperlink{namespacetrain__agent_a3dddb89fb43f195ce6a3ad47e60ce2ca}{MODEL\+\_\+\+PATH}} = "{}racing\+\_\+agent.\+zip"{}
+\item 
+\mbox{\hyperlink{namespacetrain__agent_a1874a87df7c2d204b93d014b321d4845}{total\+\_\+timesteps}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}@file train_agent.py
+@brief Script d'entraînement pour l'agent DQN dans l'environnement de course.
+
+Ce script utilise Stable Baselines 3 pour entraîner un agent DQN à naviguer sur des pistes définies.
+Le modèle entraîné est sauvegardé dans un fichier zip.
+
+@details
+- Utilise la classe RacingEnv comme environnement de simulation.
+- Le modèle utilise une architecture MLP (Multi-Layer Perceptron).
+- Sauvegarde automatique du modèle après entraînement.
+
+@dependencies:
+- tqdm
+- stable_baselines3
+- racing_env
+
+@functions:
+    - train_model(map_name, total_timesteps): Entraîne l'agent DQN sur la carte spécifiée.
+
+@example
+    python train_agent.py
+    (Exécute l'entraînement de l'agent sur la carte par défaut avec 300 000 itérations.)
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacetrain__agent_afd4773a5d97cce6b48aa3609d8da60fe}\index{train\_agent@{train\_agent}!train\_model@{train\_model}}
+\index{train\_model@{train\_model}!train\_agent@{train\_agent}}
+\doxysubsubsection{\texorpdfstring{train\_model()}{train\_model()}}
+{\footnotesize\ttfamily \label{namespacetrain__agent_afd4773a5d97cce6b48aa3609d8da60fe} 
+train\+\_\+agent.\+train\+\_\+model (\begin{DoxyParamCaption}\item[{}]{map\+\_\+name}{ = {\ttfamily "{}Map~1"{}}, }\item[{}]{total\+\_\+timesteps}{ = {\ttfamily 300000}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Entraîne l'agent IA (DQN) sur la carte spécifiée.
+
+@param map_name str: Nom de la carte à charger (ex: "Map 1").
+@param total_timesteps int: Nombre total d'itérations d'entraînement.
+
+@return None
+
+@details
+- Crée un environnement RacingEnv avec ou sans vision selon les paramètres.
+- L'agent est entraîné par batchs de 1000 steps jusqu'à atteindre le nombre total d'itérations.
+- Utilise une politique MLP.
+- Le modèle est sauvegardé sous 'racing_agent.zip'.
+
+@note Modifier le nombre d'itérations directement dans l'appel de la fonction pour ajuster l'entraînement.
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespacetrain__agent_a3dddb89fb43f195ce6a3ad47e60ce2ca}\index{train\_agent@{train\_agent}!MODEL\_PATH@{MODEL\_PATH}}
+\index{MODEL\_PATH@{MODEL\_PATH}!train\_agent@{train\_agent}}
+\doxysubsubsection{\texorpdfstring{MODEL\_PATH}{MODEL\_PATH}}
+{\footnotesize\ttfamily \label{namespacetrain__agent_a3dddb89fb43f195ce6a3ad47e60ce2ca} 
+str train\+\_\+agent.\+MODEL\+\_\+\+PATH = "{}racing\+\_\+agent.\+zip"{}}
+
+\Hypertarget{namespacetrain__agent_a1874a87df7c2d204b93d014b321d4845}\index{train\_agent@{train\_agent}!total\_timesteps@{total\_timesteps}}
+\index{total\_timesteps@{total\_timesteps}!train\_agent@{train\_agent}}
+\doxysubsubsection{\texorpdfstring{total\_timesteps}{total\_timesteps}}
+{\footnotesize\ttfamily \label{namespacetrain__agent_a1874a87df7c2d204b93d014b321d4845} 
+train\+\_\+agent.\+total\+\_\+timesteps}
+

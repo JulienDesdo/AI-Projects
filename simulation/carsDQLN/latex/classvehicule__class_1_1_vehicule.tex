@@ -1,0 +1,261 @@
+\doxysection{vehicule\+\_\+class.\+Vehicule Class Reference}
+\hypertarget{classvehicule__class_1_1_vehicule}{}\label{classvehicule__class_1_1_vehicule}\index{vehicule\_class.Vehicule@{vehicule\_class.Vehicule}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classvehicule__class_1_1_vehicule_a1fe8c2a5cd5b408dba3264ecb0d6355b}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, vit\+\_\+max, acc, \mbox{\hyperlink{classvehicule__class_1_1_vehicule_ae6f8c5cbdd471df394198cb1c1c13d99}{position}}, \mbox{\hyperlink{classvehicule__class_1_1_vehicule_a1262a49516838544eb41189e85eccf0d}{vision\+\_\+active}}=True)
+\item 
+\mbox{\hyperlink{classvehicule__class_1_1_vehicule_aa4bf862c39ac88644fc7810886fa0552}{accelerate}} (self)
+\item 
+\mbox{\hyperlink{classvehicule__class_1_1_vehicule_ac554f09bf620f4994735e90d721b8e32}{decelerate}} (self)
+\item 
+\mbox{\hyperlink{classvehicule__class_1_1_vehicule_a611b10a24926a0ee909d355c4ab13438}{set\+Move\+Away}} (self)
+\item 
+\mbox{\hyperlink{classvehicule__class_1_1_vehicule_a228ee1752ce02d5da12862cb98d53740}{set\+Champ}} (self, direction)
+\item 
+\mbox{\hyperlink{classvehicule__class_1_1_vehicule_ad6f2fd9e73c44c39aa95daf743f6b547}{get\+Position}} (self)
+\item 
+\mbox{\hyperlink{classvehicule__class_1_1_vehicule_a8273d21d0e050f12c6060f6737400207}{get\+Orientation}} (self)
+\item 
+\mbox{\hyperlink{classvehicule__class_1_1_vehicule_a990c58c520df5f7f3952945f42c40a5f}{get\+\_\+vision}} (self, track)
+\item 
+\mbox{\hyperlink{classvehicule__class_1_1_vehicule_a59bc87fc21f5c5124b81b800b2c9e1ba}{draw\+\_\+vision}} (self, screen, track)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classvehicule__class_1_1_vehicule_ad4fecf4ec60871120b4b1be4cb7a5b2e}{speed}} = 0
+\item 
+\mbox{\hyperlink{classvehicule__class_1_1_vehicule_a5cc4822e06220eed9299c055cdaaeb7f}{max\+\_\+speed}} = vit\+\_\+max
+\item 
+\mbox{\hyperlink{classvehicule__class_1_1_vehicule_ae2ef25255b996cb7bb0db44ff830f48a}{acceleration}} = acc
+\item 
+float \mbox{\hyperlink{classvehicule__class_1_1_vehicule_a8f481136b4b65ae9e027a26c3c3e9e6a}{deceleration}} = 0.\+1
+\item 
+float \mbox{\hyperlink{classvehicule__class_1_1_vehicule_a77ac52487bbd4c94c462a291e12b47ef}{friction}} = 0.\+05
+\item 
+list \mbox{\hyperlink{classvehicule__class_1_1_vehicule_ae6f8c5cbdd471df394198cb1c1c13d99}{position}} = \mbox{[}position\mbox{[}0\mbox{]}, position\mbox{[}1\mbox{]}\mbox{]}
+\item 
+int \mbox{\hyperlink{classvehicule__class_1_1_vehicule_ad0af248c8f372dc8d5e82f559fc0f05f}{orientation}} = 0
+\item 
+int \mbox{\hyperlink{classvehicule__class_1_1_vehicule_a4061fcf9c3df7e90ac2ebb1bbd92b4d3}{maniability}} = np.\+pi / 20
+\item 
+\mbox{\hyperlink{classvehicule__class_1_1_vehicule_a1262a49516838544eb41189e85eccf0d}{vision\+\_\+active}} = vision\+\_\+active
+\item 
+int \mbox{\hyperlink{classvehicule__class_1_1_vehicule_ae6ba2fb9b9682a3fe955503bd895f5aa}{num\+\_\+rays}} = 7
+\item 
+int \mbox{\hyperlink{classvehicule__class_1_1_vehicule_a76f22d67a7d79b593a86cbcc894e250e}{ray\+\_\+length}} = 120
+\item 
+\mbox{\hyperlink{classvehicule__class_1_1_vehicule_af031e13c7aed5ef640b4c9b42c9487a3}{ray\+\_\+angles}} = np.\+linspace(-\/np.\+pi / 4, np.\+pi / 4, self.\+num\+\_\+rays)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}@brief Classe représentant le véhicule : physique + capteurs (vision).
+
+@attributes:
+    speed (float): Vitesse actuelle du véhicule.
+    max_speed (float): Vitesse maximale autorisée.
+    acceleration (float): Facteur d'accélération appliqué.
+    deceleration (float): Facteur de décélération appliqué.
+    friction (float): Coefficient de friction simulant les pertes naturelles.
+    position (list[float]): Position [x, y] actuelle du véhicule.
+    orientation (float): Angle d'orientation (en radians, 0 = droite).
+    maniability (float): Capacité de rotation (radians par action).
+    vision_active (bool): True si la vision (capteurs) est activée.
+    num_rays (int): Nombre total de capteurs (rayons).
+    ray_length (int): Longueur maximale des rayons (pixels).
+    ray_angles (np.ndarray): Tableau des angles (offsets) des rayons.
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classvehicule__class_1_1_vehicule_a1fe8c2a5cd5b408dba3264ecb0d6355b}\index{vehicule\_class.Vehicule@{vehicule\_class.Vehicule}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!vehicule\_class.Vehicule@{vehicule\_class.Vehicule}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classvehicule__class_1_1_vehicule_a1fe8c2a5cd5b408dba3264ecb0d6355b} 
+vehicule\+\_\+class.\+Vehicule.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{vit\+\_\+max}{, }\item[{}]{acc}{, }\item[{}]{position}{, }\item[{}]{vision\+\_\+active}{ = {\ttfamily True}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Initialise le véhicule avec ses paramètres physiques.
+
+@param vit_max (float): Vitesse maximale autorisée.
+@param acc (float): Facteur d'accélération.
+@param position (tuple): Position initiale (x, y).
+@param vision_active (bool, optional): True pour activer la vision (default: True).
+
+@note Initialise aussi :
+    - orientation à 0 (vers la droite),
+    - les rayons (7 par défaut) avec une longueur maximale de 120 pixels.
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classvehicule__class_1_1_vehicule_aa4bf862c39ac88644fc7810886fa0552}\index{vehicule\_class.Vehicule@{vehicule\_class.Vehicule}!accelerate@{accelerate}}
+\index{accelerate@{accelerate}!vehicule\_class.Vehicule@{vehicule\_class.Vehicule}}
+\doxysubsubsection{\texorpdfstring{accelerate()}{accelerate()}}
+{\footnotesize\ttfamily \label{classvehicule__class_1_1_vehicule_aa4bf862c39ac88644fc7810886fa0552} 
+vehicule\+\_\+class.\+Vehicule.\+accelerate (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Augmente la vitesse du véhicule jusqu'à la vitesse maximale.
+
+@details
+Si la vitesse est déjà maximale, ne fait rien.
+\end{DoxyVerb}
+ \Hypertarget{classvehicule__class_1_1_vehicule_ac554f09bf620f4994735e90d721b8e32}\index{vehicule\_class.Vehicule@{vehicule\_class.Vehicule}!decelerate@{decelerate}}
+\index{decelerate@{decelerate}!vehicule\_class.Vehicule@{vehicule\_class.Vehicule}}
+\doxysubsubsection{\texorpdfstring{decelerate()}{decelerate()}}
+{\footnotesize\ttfamily \label{classvehicule__class_1_1_vehicule_ac554f09bf620f4994735e90d721b8e32} 
+vehicule\+\_\+class.\+Vehicule.\+decelerate (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Réduit la vitesse du véhicule (sans passer sous zéro).
+
+@details
+Applique une décélération et assure que la vitesse reste positive.
+\end{DoxyVerb}
+ \Hypertarget{classvehicule__class_1_1_vehicule_a59bc87fc21f5c5124b81b800b2c9e1ba}\index{vehicule\_class.Vehicule@{vehicule\_class.Vehicule}!draw\_vision@{draw\_vision}}
+\index{draw\_vision@{draw\_vision}!vehicule\_class.Vehicule@{vehicule\_class.Vehicule}}
+\doxysubsubsection{\texorpdfstring{draw\_vision()}{draw\_vision()}}
+{\footnotesize\ttfamily \label{classvehicule__class_1_1_vehicule_a59bc87fc21f5c5124b81b800b2c9e1ba} 
+vehicule\+\_\+class.\+Vehicule.\+draw\+\_\+vision (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{screen}{, }\item[{}]{track}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Dessine les capteurs (rayons) sur la surface Pygame.
+
+@param screen (pygame.Surface): Surface d'affichage.
+@param track (Track): Objet piste pour savoir où tracer les rayons.
+
+@note
+Les rayons sont affichés en rouge.
+\end{DoxyVerb}
+ \Hypertarget{classvehicule__class_1_1_vehicule_a990c58c520df5f7f3952945f42c40a5f}\index{vehicule\_class.Vehicule@{vehicule\_class.Vehicule}!get\_vision@{get\_vision}}
+\index{get\_vision@{get\_vision}!vehicule\_class.Vehicule@{vehicule\_class.Vehicule}}
+\doxysubsubsection{\texorpdfstring{get\_vision()}{get\_vision()}}
+{\footnotesize\ttfamily \label{classvehicule__class_1_1_vehicule_a990c58c520df5f7f3952945f42c40a5f} 
+vehicule\+\_\+class.\+Vehicule.\+get\+\_\+vision (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{track}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Calcule les distances des capteurs (rayons) par rapport aux bords de la piste.
+
+@param track (Track): Objet piste pour tester si un point est sur la route.
+
+@return list[int]: Distances (en pixels) pour chaque rayon.
+\end{DoxyVerb}
+ \Hypertarget{classvehicule__class_1_1_vehicule_a8273d21d0e050f12c6060f6737400207}\index{vehicule\_class.Vehicule@{vehicule\_class.Vehicule}!getOrientation@{getOrientation}}
+\index{getOrientation@{getOrientation}!vehicule\_class.Vehicule@{vehicule\_class.Vehicule}}
+\doxysubsubsection{\texorpdfstring{getOrientation()}{getOrientation()}}
+{\footnotesize\ttfamily \label{classvehicule__class_1_1_vehicule_a8273d21d0e050f12c6060f6737400207} 
+vehicule\+\_\+class.\+Vehicule.\+get\+Orientation (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Retourne l'orientation actuelle du véhicule.
+
+@return float: Orientation en radians.
+\end{DoxyVerb}
+ \Hypertarget{classvehicule__class_1_1_vehicule_ad6f2fd9e73c44c39aa95daf743f6b547}\index{vehicule\_class.Vehicule@{vehicule\_class.Vehicule}!getPosition@{getPosition}}
+\index{getPosition@{getPosition}!vehicule\_class.Vehicule@{vehicule\_class.Vehicule}}
+\doxysubsubsection{\texorpdfstring{getPosition()}{getPosition()}}
+{\footnotesize\ttfamily \label{classvehicule__class_1_1_vehicule_ad6f2fd9e73c44c39aa95daf743f6b547} 
+vehicule\+\_\+class.\+Vehicule.\+get\+Position (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Retourne la position actuelle du véhicule.
+
+@return list: Position [x, y].
+\end{DoxyVerb}
+ \Hypertarget{classvehicule__class_1_1_vehicule_a228ee1752ce02d5da12862cb98d53740}\index{vehicule\_class.Vehicule@{vehicule\_class.Vehicule}!setChamp@{setChamp}}
+\index{setChamp@{setChamp}!vehicule\_class.Vehicule@{vehicule\_class.Vehicule}}
+\doxysubsubsection{\texorpdfstring{setChamp()}{setChamp()}}
+{\footnotesize\ttfamily \label{classvehicule__class_1_1_vehicule_a228ee1752ce02d5da12862cb98d53740} 
+vehicule\+\_\+class.\+Vehicule.\+set\+Champ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{direction}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Modifie l'orientation du véhicule (rotation).
+
+@param direction (str): 'right' ou 'left' pour tourner dans la direction choisie.
+\end{DoxyVerb}
+ \Hypertarget{classvehicule__class_1_1_vehicule_a611b10a24926a0ee909d355c4ab13438}\index{vehicule\_class.Vehicule@{vehicule\_class.Vehicule}!setMoveAway@{setMoveAway}}
+\index{setMoveAway@{setMoveAway}!vehicule\_class.Vehicule@{vehicule\_class.Vehicule}}
+\doxysubsubsection{\texorpdfstring{setMoveAway()}{setMoveAway()}}
+{\footnotesize\ttfamily \label{classvehicule__class_1_1_vehicule_a611b10a24926a0ee909d355c4ab13438} 
+vehicule\+\_\+class.\+Vehicule.\+set\+Move\+Away (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Avance le véhicule selon sa vitesse et orientation actuelles.
+
+@note
+Met à jour la position [x, y] directement.
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classvehicule__class_1_1_vehicule_ae2ef25255b996cb7bb0db44ff830f48a}\index{vehicule\_class.Vehicule@{vehicule\_class.Vehicule}!acceleration@{acceleration}}
+\index{acceleration@{acceleration}!vehicule\_class.Vehicule@{vehicule\_class.Vehicule}}
+\doxysubsubsection{\texorpdfstring{acceleration}{acceleration}}
+{\footnotesize\ttfamily \label{classvehicule__class_1_1_vehicule_ae2ef25255b996cb7bb0db44ff830f48a} 
+vehicule\+\_\+class.\+Vehicule.\+acceleration = acc}
+
+\Hypertarget{classvehicule__class_1_1_vehicule_a8f481136b4b65ae9e027a26c3c3e9e6a}\index{vehicule\_class.Vehicule@{vehicule\_class.Vehicule}!deceleration@{deceleration}}
+\index{deceleration@{deceleration}!vehicule\_class.Vehicule@{vehicule\_class.Vehicule}}
+\doxysubsubsection{\texorpdfstring{deceleration}{deceleration}}
+{\footnotesize\ttfamily \label{classvehicule__class_1_1_vehicule_a8f481136b4b65ae9e027a26c3c3e9e6a} 
+float vehicule\+\_\+class.\+Vehicule.\+deceleration = 0.\+1}
+
+\Hypertarget{classvehicule__class_1_1_vehicule_a77ac52487bbd4c94c462a291e12b47ef}\index{vehicule\_class.Vehicule@{vehicule\_class.Vehicule}!friction@{friction}}
+\index{friction@{friction}!vehicule\_class.Vehicule@{vehicule\_class.Vehicule}}
+\doxysubsubsection{\texorpdfstring{friction}{friction}}
+{\footnotesize\ttfamily \label{classvehicule__class_1_1_vehicule_a77ac52487bbd4c94c462a291e12b47ef} 
+float vehicule\+\_\+class.\+Vehicule.\+friction = 0.\+05}
+
+\Hypertarget{classvehicule__class_1_1_vehicule_a4061fcf9c3df7e90ac2ebb1bbd92b4d3}\index{vehicule\_class.Vehicule@{vehicule\_class.Vehicule}!maniability@{maniability}}
+\index{maniability@{maniability}!vehicule\_class.Vehicule@{vehicule\_class.Vehicule}}
+\doxysubsubsection{\texorpdfstring{maniability}{maniability}}
+{\footnotesize\ttfamily \label{classvehicule__class_1_1_vehicule_a4061fcf9c3df7e90ac2ebb1bbd92b4d3} 
+int vehicule\+\_\+class.\+Vehicule.\+maniability = np.\+pi / 20}
+
+\Hypertarget{classvehicule__class_1_1_vehicule_a5cc4822e06220eed9299c055cdaaeb7f}\index{vehicule\_class.Vehicule@{vehicule\_class.Vehicule}!max\_speed@{max\_speed}}
+\index{max\_speed@{max\_speed}!vehicule\_class.Vehicule@{vehicule\_class.Vehicule}}
+\doxysubsubsection{\texorpdfstring{max\_speed}{max\_speed}}
+{\footnotesize\ttfamily \label{classvehicule__class_1_1_vehicule_a5cc4822e06220eed9299c055cdaaeb7f} 
+vehicule\+\_\+class.\+Vehicule.\+max\+\_\+speed = vit\+\_\+max}
+
+\Hypertarget{classvehicule__class_1_1_vehicule_ae6ba2fb9b9682a3fe955503bd895f5aa}\index{vehicule\_class.Vehicule@{vehicule\_class.Vehicule}!num\_rays@{num\_rays}}
+\index{num\_rays@{num\_rays}!vehicule\_class.Vehicule@{vehicule\_class.Vehicule}}
+\doxysubsubsection{\texorpdfstring{num\_rays}{num\_rays}}
+{\footnotesize\ttfamily \label{classvehicule__class_1_1_vehicule_ae6ba2fb9b9682a3fe955503bd895f5aa} 
+int vehicule\+\_\+class.\+Vehicule.\+num\+\_\+rays = 7}
+
+\Hypertarget{classvehicule__class_1_1_vehicule_ad0af248c8f372dc8d5e82f559fc0f05f}\index{vehicule\_class.Vehicule@{vehicule\_class.Vehicule}!orientation@{orientation}}
+\index{orientation@{orientation}!vehicule\_class.Vehicule@{vehicule\_class.Vehicule}}
+\doxysubsubsection{\texorpdfstring{orientation}{orientation}}
+{\footnotesize\ttfamily \label{classvehicule__class_1_1_vehicule_ad0af248c8f372dc8d5e82f559fc0f05f} 
+int vehicule\+\_\+class.\+Vehicule.\+orientation = 0}
+
+\Hypertarget{classvehicule__class_1_1_vehicule_ae6f8c5cbdd471df394198cb1c1c13d99}\index{vehicule\_class.Vehicule@{vehicule\_class.Vehicule}!position@{position}}
+\index{position@{position}!vehicule\_class.Vehicule@{vehicule\_class.Vehicule}}
+\doxysubsubsection{\texorpdfstring{position}{position}}
+{\footnotesize\ttfamily \label{classvehicule__class_1_1_vehicule_ae6f8c5cbdd471df394198cb1c1c13d99} 
+vehicule\+\_\+class.\+Vehicule.\+position = \mbox{[}position\mbox{[}0\mbox{]}, position\mbox{[}1\mbox{]}\mbox{]}}
+
+\Hypertarget{classvehicule__class_1_1_vehicule_af031e13c7aed5ef640b4c9b42c9487a3}\index{vehicule\_class.Vehicule@{vehicule\_class.Vehicule}!ray\_angles@{ray\_angles}}
+\index{ray\_angles@{ray\_angles}!vehicule\_class.Vehicule@{vehicule\_class.Vehicule}}
+\doxysubsubsection{\texorpdfstring{ray\_angles}{ray\_angles}}
+{\footnotesize\ttfamily \label{classvehicule__class_1_1_vehicule_af031e13c7aed5ef640b4c9b42c9487a3} 
+vehicule\+\_\+class.\+Vehicule.\+ray\+\_\+angles = np.\+linspace(-\/np.\+pi / 4, np.\+pi / 4, self.\+num\+\_\+rays)}
+
+\Hypertarget{classvehicule__class_1_1_vehicule_a76f22d67a7d79b593a86cbcc894e250e}\index{vehicule\_class.Vehicule@{vehicule\_class.Vehicule}!ray\_length@{ray\_length}}
+\index{ray\_length@{ray\_length}!vehicule\_class.Vehicule@{vehicule\_class.Vehicule}}
+\doxysubsubsection{\texorpdfstring{ray\_length}{ray\_length}}
+{\footnotesize\ttfamily \label{classvehicule__class_1_1_vehicule_a76f22d67a7d79b593a86cbcc894e250e} 
+vehicule\+\_\+class.\+Vehicule.\+ray\+\_\+length = 120}
+
+\Hypertarget{classvehicule__class_1_1_vehicule_ad4fecf4ec60871120b4b1be4cb7a5b2e}\index{vehicule\_class.Vehicule@{vehicule\_class.Vehicule}!speed@{speed}}
+\index{speed@{speed}!vehicule\_class.Vehicule@{vehicule\_class.Vehicule}}
+\doxysubsubsection{\texorpdfstring{speed}{speed}}
+{\footnotesize\ttfamily \label{classvehicule__class_1_1_vehicule_ad4fecf4ec60871120b4b1be4cb7a5b2e} 
+int vehicule\+\_\+class.\+Vehicule.\+speed = 0}
+
+\Hypertarget{classvehicule__class_1_1_vehicule_a1262a49516838544eb41189e85eccf0d}\index{vehicule\_class.Vehicule@{vehicule\_class.Vehicule}!vision\_active@{vision\_active}}
+\index{vision\_active@{vision\_active}!vehicule\_class.Vehicule@{vehicule\_class.Vehicule}}
+\doxysubsubsection{\texorpdfstring{vision\_active}{vision\_active}}
+{\footnotesize\ttfamily \label{classvehicule__class_1_1_vehicule_a1262a49516838544eb41189e85eccf0d} 
+vehicule\+\_\+class.\+Vehicule.\+vision\+\_\+active = vision\+\_\+active}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{vehicule__class_8py}{vehicule\+\_\+class.\+py}}\end{DoxyCompactItemize}

@@ -1,11 +1,45 @@
+"""
+@file track.py
+@brief Module définissant la classe Track (piste).
+
+Ce module permet de gérer la construction de la piste, le dessin graphique, la ligne d'arrivée,
+et la détection des collisions pour vérifier si un point est sur la route.
+
+@details
+- Charge des pistes prédéfinies (Map 1, Map 2, Map 3).
+- Supporte l'affichage de la ligne d'arrivée avec une image optionnelle.
+- Outils utilitaires pour vérifier si le véhicule reste sur la piste.
+
+@dependencies:
+- math
+- pygame
+
+@classes:
+    - Track: Classe principale qui définit la piste et ses méthodes utilitaires.
+"""
+
 import math
 import pygame
 
 class Track:
+    """
+    @brief Classe représentant la piste (track) sur laquelle roule le véhicule.
+
+    @param map_name str: Nom de la carte à charger (ex: "Map 1", "Map 2", ...).
+    @param with_images bool: True pour afficher une image de ligne d'arrivée, False sinon.
+
+    @attributes:
+        - road_width (int): Largeur de la piste en pixels.
+        - track (list): Liste des points (x, y) qui forment la piste.
+        - finish_pos (tuple): Position (x, y) de la ligne d'arrivée.
+        - terminus_img (pygame.Surface): Image utilisée pour afficher la ligne d'arrivée (peut être None).
+
+    @example
+        track = Track("Map 1")
+    """
     def __init__(self, map_name, with_images=True):
-        """
-        :param with_images: True si on charge terminus_line.png
-        """
+        # :param with_images: True si on charge terminus_line.png
+
         self.road_width = 120
         self.with_images = with_images
 
@@ -31,7 +65,15 @@ class Track:
         return self.track
 
     def draw_track(self, screen):
-        """Dessine la route + drapeau."""
+        """
+        @brief Dessine la piste et la ligne d'arrivée sur la fenêtre Pygame.
+
+        @param screen pygame.Surface: Surface où dessiner la piste.
+
+        @details
+        - Trace la piste en reliant les points avec des lignes grises épaisses.
+        - Affiche l'image de la ligne d'arrivée si activée.
+        """
         if len(self.track) > 1:
             color = (120, 120, 120)
             pygame.draw.lines(screen, color, False, self.track, width=self.road_width)
@@ -41,6 +83,18 @@ class Track:
             screen.blit(self.terminus_img, rect)
 
     def is_on_road(self, x, y):
+        """
+        @brief Vérifie si un point (x, y) est sur la piste ou hors piste.
+
+        @param x float: Coordonnée X du point.
+        @param y float: Coordonnée Y du point.
+
+        @return bool: True si le point est sur la piste, False sinon.
+
+        @details
+        - Calcule la distance la plus proche entre le point et les segments de la piste.
+        - Compare avec la moitié de la largeur de la piste.
+        """
         half_width = self.road_width / 2.0
         min_dist = float('inf')
         for i in range(len(self.track) - 1):
@@ -53,6 +107,18 @@ class Track:
         return (min_dist <= half_width)
 
     def point_to_segment_distance(self, px, py, x1, y1, x2, y2):
+        """
+        @brief Calcule la distance entre un point et un segment de droite.
+
+        @param px float: Coordonnée X du point.
+        @param py float: Coordonnée Y du point.
+        @param x1 float: Coordonnée X du premier point du segment.
+        @param y1 float: Coordonnée Y du premier point du segment.
+        @param x2 float: Coordonnée X du second point du segment.
+        @param y2 float: Coordonnée Y du second point du segment.
+
+        @return float: Distance minimale entre le point et le segment.
+        """
         vx = x2 - x1
         vy = y2 - y1
         wx = px - x1

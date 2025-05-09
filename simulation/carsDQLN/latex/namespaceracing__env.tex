@@ -1,0 +1,59 @@
+\doxysection{racing\+\_\+env Namespace Reference}
+\hypertarget{namespaceracing__env}{}\label{namespaceracing__env}\index{racing\_env@{racing\_env}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classracing__env_1_1_racing_env}{Racing\+Env}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespaceracing__env_a6e5b2ad78f7cf4e5ca44a15c90d6b2fb}{resize\+\_\+and\+\_\+center\+\_\+image}} (image, target\+\_\+width, target\+\_\+height)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}@file racing_env.py
+@brief Définition de l'environnement Gym compatible avec Stable-Baselines3.
+
+Ce module permet l'entraînement et le test d'agents IA dans un simulateur de course basé sur Gym.
+Il contient également une fonction utilitaire pour redimensionner et centrer des images Pygame.
+
+@details
+- Observation: vecteur de 7 distances des capteurs (vision rayons).
+- Actions: 0 = accélérer, 1 = tourner à gauche, 2 = tourner à droite.
+- Utilisé avec Stable-Baselines3 pour des agents DQN par ex.
+
+@dependencies:
+- gym
+- numpy
+- pygame
+
+@classes:
+    - RacingEnv: Environnement Gym pour la course.
+
+@functions:
+    - resize_and_center_image: Redimensionne une image et la centre dans un cadre donné.
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{namespaceracing__env_a6e5b2ad78f7cf4e5ca44a15c90d6b2fb}\index{racing\_env@{racing\_env}!resize\_and\_center\_image@{resize\_and\_center\_image}}
+\index{resize\_and\_center\_image@{resize\_and\_center\_image}!racing\_env@{racing\_env}}
+\doxysubsubsection{\texorpdfstring{resize\_and\_center\_image()}{resize\_and\_center\_image()}}
+{\footnotesize\ttfamily \label{namespaceracing__env_a6e5b2ad78f7cf4e5ca44a15c90d6b2fb} 
+racing\+\_\+env.\+resize\+\_\+and\+\_\+center\+\_\+image (\begin{DoxyParamCaption}\item[{}]{image}{, }\item[{}]{target\+\_\+width}{, }\item[{}]{target\+\_\+height}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Redimensionne l'image sans la déformer et la centre dans un cadre cible.
+
+@param image pygame.Surface: Image source à redimensionner.
+@param target_width int: Largeur cible du cadre.
+@param target_height int: Hauteur cible du cadre.
+
+@return pygame.Surface: Surface redimensionnée et centrée.
+
+@details
+- Conserve le ratio hauteur pour ne pas déformer l'image.
+- Centre l'image horizontalement dans le cadre donné.
+\end{DoxyVerb}
+ 

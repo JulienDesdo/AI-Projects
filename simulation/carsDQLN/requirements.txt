@@ -1,0 +1,8 @@
+pygame
+numpy
+gym
+stable-baselines3
+tqdm
+emoji  # <= si besoin
+pylint  # optionnel pour les diagrammes
+graphviz  # optionnel pour les diagrammes

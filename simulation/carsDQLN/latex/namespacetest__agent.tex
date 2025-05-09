@@ -1,0 +1,93 @@
+\doxysection{test\+\_\+agent Namespace Reference}
+\hypertarget{namespacetest__agent}{}\label{namespacetest__agent}\index{test\_agent@{test\_agent}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacetest__agent_a2e9834145e5ec660bcb171e259a616bb}{test\+\_\+model}} (map\+\_\+name="{}Map 1"{}, show\+\_\+vision=\mbox{\hyperlink{namespacetest__agent_a57b27cdbf3401dcd1791224b417f71b7}{True}}, \mbox{\hyperlink{namespacetest__agent_a4d6c897222d8a3a370691e2da150c962}{num\+\_\+episodes}}=1)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacetest__agent_a02b504299b2f154c8de7f18059c43088}{encoding}}
+\item 
+str \mbox{\hyperlink{namespacetest__agent_a2110e28c7b0a32786097fe4ec9034b4c}{MODEL\+\_\+\+PATH}} = "{}racing\+\_\+agent.\+zip"{}
+\item 
+\mbox{\hyperlink{namespacetest__agent_af483edf59d17d1adfea9006421948838}{show\+\_\+vision}}
+\item 
+\mbox{\hyperlink{namespacetest__agent_a57b27cdbf3401dcd1791224b417f71b7}{True}}
+\item 
+\mbox{\hyperlink{namespacetest__agent_a4d6c897222d8a3a370691e2da150c962}{num\+\_\+episodes}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}@file test_agent.py
+@brief Script de test pour un modèle DQN entraîné sur le simulateur de course.
+
+@details
+Permet de :
+- Charger un modèle pré-entraîné (racing_agent.zip),
+- Simuler et visualiser des épisodes en direct avec rendu Pygame,
+- Tester la robustesse de l'IA sur la carte spécifiée.
+
+@functions:
+    - test_model(map_name, show_vision, num_episodes): Lance la simulation IA.
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacetest__agent_a2e9834145e5ec660bcb171e259a616bb}\index{test\_agent@{test\_agent}!test\_model@{test\_model}}
+\index{test\_model@{test\_model}!test\_agent@{test\_agent}}
+\doxysubsubsection{\texorpdfstring{test\_model()}{test\_model()}}
+{\footnotesize\ttfamily \label{namespacetest__agent_a2e9834145e5ec660bcb171e259a616bb} 
+test\+\_\+agent.\+test\+\_\+model (\begin{DoxyParamCaption}\item[{}]{map\+\_\+name}{ = {\ttfamily "{}Map~1"{}}, }\item[{}]{show\+\_\+vision}{ = {\ttfamily \mbox{\hyperlink{namespacetest__agent_a57b27cdbf3401dcd1791224b417f71b7}{True}}}, }\item[{}]{num\+\_\+episodes}{ = {\ttfamily 1}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Lance la simulation IA en utilisant le modèle entraîné (DQN).
+
+@param map_name (str): Nom de la carte à charger (ex: "Map 1").
+@param show_vision (bool): True pour afficher les capteurs (rayons) pendant la simulation.
+@param num_episodes (int): Nombre d'épisodes à simuler (par défaut: 1).
+
+@details
+- Si le modèle 'racing_agent.zip' n'est pas trouvé, la fonction renvoie une erreur.
+- Chaque épisode est rendu en direct avec Pygame (1280x720).
+- La simulation s'arrête si la fenêtre est fermée ou si l'épisode est terminé.
+
+@return None
+
+@note
+Ce script suppose que le fichier modèle a été généré par train_agent.py.
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespacetest__agent_a02b504299b2f154c8de7f18059c43088}\index{test\_agent@{test\_agent}!encoding@{encoding}}
+\index{encoding@{encoding}!test\_agent@{test\_agent}}
+\doxysubsubsection{\texorpdfstring{encoding}{encoding}}
+{\footnotesize\ttfamily \label{namespacetest__agent_a02b504299b2f154c8de7f18059c43088} 
+test\+\_\+agent.\+encoding}
+
+\Hypertarget{namespacetest__agent_a2110e28c7b0a32786097fe4ec9034b4c}\index{test\_agent@{test\_agent}!MODEL\_PATH@{MODEL\_PATH}}
+\index{MODEL\_PATH@{MODEL\_PATH}!test\_agent@{test\_agent}}
+\doxysubsubsection{\texorpdfstring{MODEL\_PATH}{MODEL\_PATH}}
+{\footnotesize\ttfamily \label{namespacetest__agent_a2110e28c7b0a32786097fe4ec9034b4c} 
+str test\+\_\+agent.\+MODEL\+\_\+\+PATH = "{}racing\+\_\+agent.\+zip"{}}
+
+\Hypertarget{namespacetest__agent_a4d6c897222d8a3a370691e2da150c962}\index{test\_agent@{test\_agent}!num\_episodes@{num\_episodes}}
+\index{num\_episodes@{num\_episodes}!test\_agent@{test\_agent}}
+\doxysubsubsection{\texorpdfstring{num\_episodes}{num\_episodes}}
+{\footnotesize\ttfamily \label{namespacetest__agent_a4d6c897222d8a3a370691e2da150c962} 
+test\+\_\+agent.\+num\+\_\+episodes}
+
+\Hypertarget{namespacetest__agent_af483edf59d17d1adfea9006421948838}\index{test\_agent@{test\_agent}!show\_vision@{show\_vision}}
+\index{show\_vision@{show\_vision}!test\_agent@{test\_agent}}
+\doxysubsubsection{\texorpdfstring{show\_vision}{show\_vision}}
+{\footnotesize\ttfamily \label{namespacetest__agent_af483edf59d17d1adfea9006421948838} 
+test\+\_\+agent.\+show\+\_\+vision}
+
+\Hypertarget{namespacetest__agent_a57b27cdbf3401dcd1791224b417f71b7}\index{test\_agent@{test\_agent}!True@{True}}
+\index{True@{True}!test\_agent@{test\_agent}}
+\doxysubsubsection{\texorpdfstring{True}{True}}
+{\footnotesize\ttfamily \label{namespacetest__agent_a57b27cdbf3401dcd1791224b417f71b7} 
+test\+\_\+agent.\+True}
+

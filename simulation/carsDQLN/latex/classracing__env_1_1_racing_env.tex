@@ -1,0 +1,179 @@
+\doxysection{racing\+\_\+env.\+Racing\+Env Class Reference}
+\hypertarget{classracing__env_1_1_racing_env}{}\label{classracing__env_1_1_racing_env}\index{racing\_env.RacingEnv@{racing\_env.RacingEnv}}
+Inheritance diagram for racing\+\_\+env.\+Racing\+Env\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classracing__env_1_1_racing_env}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classracing__env_1_1_racing_env_a03a2b0eb94861e0a3701f185d63983ff}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \mbox{\hyperlink{classracing__env_1_1_racing_env_a9439afc5b363a911b44c11d8dca05880}{map\+\_\+name}}="{}Map 1"{}, show\+\_\+vision=False, with\+\_\+images=False, \mbox{\hyperlink{classracing__env_1_1_racing_env_ac10d5a52b2b8427eb06aecc7f65be47f}{screen}}=None)
+\item 
+\mbox{\hyperlink{classracing__env_1_1_racing_env_a8ecfb5a566fbe10204c026a4815c8538}{reset}} (self)
+\item 
+\mbox{\hyperlink{classracing__env_1_1_racing_env_a9ff1c2f73a21ef2aa80a2ae7e17e4cbf}{step}} (self, action)
+\item 
+\mbox{\hyperlink{classracing__env_1_1_racing_env_a96643d82d681d8b5db43e9ceed5b224c}{render}} (self, mode="{}human"{})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classracing__env_1_1_racing_env_ac10d5a52b2b8427eb06aecc7f65be47f}{screen}} = screen
+\item 
+\mbox{\hyperlink{classracing__env_1_1_racing_env_a9439afc5b363a911b44c11d8dca05880}{map\+\_\+name}} = map\+\_\+name
+\item 
+\mbox{\hyperlink{classracing__env_1_1_racing_env_a4ced3c7d29e403744cbf67ebab5b7f0a}{show\+\_\+vision}} = show\+\_\+vision
+\item 
+\mbox{\hyperlink{classracing__env_1_1_racing_env_acb1a699a9be9c7098f639113affddcdf}{track}} = \mbox{\hyperlink{classtrack_1_1_track}{Track}}(\mbox{\hyperlink{classracing__env_1_1_racing_env_a9439afc5b363a911b44c11d8dca05880}{map\+\_\+name}}, with\+\_\+images=with\+\_\+images)
+\item 
+\mbox{\hyperlink{classracing__env_1_1_racing_env_abb7b542ba974fd4713438cbd0bb6f76a}{vehicle}} = \mbox{\hyperlink{classvehicule__class_1_1_vehicule}{Vehicule}}(10, 0.\+3, self.\+track.\+get\+\_\+track()\mbox{[}0\mbox{]}, vision\+\_\+active=True)
+\item 
+\mbox{\hyperlink{classracing__env_1_1_racing_env_aca8e0638350ec63dec02cee63d636d2c}{action\+\_\+space}} = spaces.\+Discrete(3)
+\item 
+\mbox{\hyperlink{classracing__env_1_1_racing_env_a0ffbd907d349cf6c4cbbc69c315da0d0}{observation\+\_\+space}} = spaces.\+Box(low=0, high=120, shape=(7,), dtype=np.\+float32)
+\item 
+bool \mbox{\hyperlink{classracing__env_1_1_racing_env_aff9e661498f3f216fc4094502a7a7f21}{done}} = False
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}@brief Environnement Gym pour entraîner et tester des IA de course.
+
+@param map_name str: Nom de la carte (ex: "Map 1").
+@param show_vision bool: Active/désactive l'affichage des capteurs.
+@param with_images bool: True pour charger les images graphiques.
+@param screen pygame.Surface: Surface Pygame à utiliser pour le rendu (optionnel).
+
+@attributes:
+    - screen (pygame.Surface): Surface Pygame pour l'affichage.
+    - map_name (str): Nom de la carte utilisée.
+    - show_vision (bool): Si True, affiche les capteurs en mode render().
+    - track (Track): Instance de la classe Track.
+    - vehicle (Vehicule): Instance de la classe Vehicule.
+    - action_space (gym.spaces.Discrete): Espace des actions (3 actions).
+    - observation_space (gym.spaces.Box): Observation (7 rayons capteurs).
+    - done (bool): Indique si l'épisode est terminé.
+
+@example
+    env = RacingEnv(map_name="Map 1")
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classracing__env_1_1_racing_env_a03a2b0eb94861e0a3701f185d63983ff}\index{racing\_env.RacingEnv@{racing\_env.RacingEnv}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!racing\_env.RacingEnv@{racing\_env.RacingEnv}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classracing__env_1_1_racing_env_a03a2b0eb94861e0a3701f185d63983ff} 
+racing\+\_\+env.\+Racing\+Env.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{map\+\_\+name}{ = {\ttfamily "{}Map~1"{}}, }\item[{}]{show\+\_\+vision}{ = {\ttfamily False}, }\item[{}]{with\+\_\+images}{ = {\ttfamily False}, }\item[{}]{screen}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classracing__env_1_1_racing_env_a96643d82d681d8b5db43e9ceed5b224c}\index{racing\_env.RacingEnv@{racing\_env.RacingEnv}!render@{render}}
+\index{render@{render}!racing\_env.RacingEnv@{racing\_env.RacingEnv}}
+\doxysubsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily \label{classracing__env_1_1_racing_env_a96643d82d681d8b5db43e9ceed5b224c} 
+racing\+\_\+env.\+Racing\+Env.\+render (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{mode}{ = {\ttfamily "{}human"{}}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Affiche visuellement l'environnement avec Pygame.
+
+@param mode str: Mode de rendu (inutile ici, par défaut "human").
+
+@note Nécessite que self.screen soit initialisé. Sinon renvoie un message.
+
+@details
+- Dessine la piste, la voiture et les rayons (si activés).
+\end{DoxyVerb}
+ \Hypertarget{classracing__env_1_1_racing_env_a8ecfb5a566fbe10204c026a4815c8538}\index{racing\_env.RacingEnv@{racing\_env.RacingEnv}!reset@{reset}}
+\index{reset@{reset}!racing\_env.RacingEnv@{racing\_env.RacingEnv}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily \label{classracing__env_1_1_racing_env_a8ecfb5a566fbe10204c026a4815c8538} 
+racing\+\_\+env.\+Racing\+Env.\+reset (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Réinitialise l'environnement pour un nouvel épisode.
+
+@return np.ndarray: Observation initiale (7 distances des capteurs).
+
+@details
+- Réinitialise la voiture à la position de départ.
+- Remet done à False.
+\end{DoxyVerb}
+ \Hypertarget{classracing__env_1_1_racing_env_a9ff1c2f73a21ef2aa80a2ae7e17e4cbf}\index{racing\_env.RacingEnv@{racing\_env.RacingEnv}!step@{step}}
+\index{step@{step}!racing\_env.RacingEnv@{racing\_env.RacingEnv}}
+\doxysubsubsection{\texorpdfstring{step()}{step()}}
+{\footnotesize\ttfamily \label{classracing__env_1_1_racing_env_a9ff1c2f73a21ef2aa80a2ae7e17e4cbf} 
+racing\+\_\+env.\+Racing\+Env.\+step (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{action}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Applique une action et retourne le résultat.
+
+@param action int: Action choisie (0=accélérer, 1=gauche, 2=droite).
+
+@return tuple: (observation, reward, done, info)
+    - observation (np.ndarray): Nouvelle observation des capteurs.
+    - reward (float): Récompense.
+    - done (bool): True si l'épisode est terminé.
+    - info (dict): Infos supplémentaires (vide).
+
+@details
+- Donne une grosse récompense en cas d'arrivée (1000).
+- Pénalise (-50) si le véhicule sort de la piste.
+- Récompense continue basée sur la vitesse sinon.
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classracing__env_1_1_racing_env_aca8e0638350ec63dec02cee63d636d2c}\index{racing\_env.RacingEnv@{racing\_env.RacingEnv}!action\_space@{action\_space}}
+\index{action\_space@{action\_space}!racing\_env.RacingEnv@{racing\_env.RacingEnv}}
+\doxysubsubsection{\texorpdfstring{action\_space}{action\_space}}
+{\footnotesize\ttfamily \label{classracing__env_1_1_racing_env_aca8e0638350ec63dec02cee63d636d2c} 
+racing\+\_\+env.\+Racing\+Env.\+action\+\_\+space = spaces.\+Discrete(3)}
+
+\Hypertarget{classracing__env_1_1_racing_env_aff9e661498f3f216fc4094502a7a7f21}\index{racing\_env.RacingEnv@{racing\_env.RacingEnv}!done@{done}}
+\index{done@{done}!racing\_env.RacingEnv@{racing\_env.RacingEnv}}
+\doxysubsubsection{\texorpdfstring{done}{done}}
+{\footnotesize\ttfamily \label{classracing__env_1_1_racing_env_aff9e661498f3f216fc4094502a7a7f21} 
+bool racing\+\_\+env.\+Racing\+Env.\+done = False}
+
+\Hypertarget{classracing__env_1_1_racing_env_a9439afc5b363a911b44c11d8dca05880}\index{racing\_env.RacingEnv@{racing\_env.RacingEnv}!map\_name@{map\_name}}
+\index{map\_name@{map\_name}!racing\_env.RacingEnv@{racing\_env.RacingEnv}}
+\doxysubsubsection{\texorpdfstring{map\_name}{map\_name}}
+{\footnotesize\ttfamily \label{classracing__env_1_1_racing_env_a9439afc5b363a911b44c11d8dca05880} 
+racing\+\_\+env.\+Racing\+Env.\+map\+\_\+name = map\+\_\+name}
+
+\Hypertarget{classracing__env_1_1_racing_env_a0ffbd907d349cf6c4cbbc69c315da0d0}\index{racing\_env.RacingEnv@{racing\_env.RacingEnv}!observation\_space@{observation\_space}}
+\index{observation\_space@{observation\_space}!racing\_env.RacingEnv@{racing\_env.RacingEnv}}
+\doxysubsubsection{\texorpdfstring{observation\_space}{observation\_space}}
+{\footnotesize\ttfamily \label{classracing__env_1_1_racing_env_a0ffbd907d349cf6c4cbbc69c315da0d0} 
+racing\+\_\+env.\+Racing\+Env.\+observation\+\_\+space = spaces.\+Box(low=0, high=120, shape=(7,), dtype=np.\+float32)}
+
+\Hypertarget{classracing__env_1_1_racing_env_ac10d5a52b2b8427eb06aecc7f65be47f}\index{racing\_env.RacingEnv@{racing\_env.RacingEnv}!screen@{screen}}
+\index{screen@{screen}!racing\_env.RacingEnv@{racing\_env.RacingEnv}}
+\doxysubsubsection{\texorpdfstring{screen}{screen}}
+{\footnotesize\ttfamily \label{classracing__env_1_1_racing_env_ac10d5a52b2b8427eb06aecc7f65be47f} 
+racing\+\_\+env.\+Racing\+Env.\+screen = screen}
+
+\Hypertarget{classracing__env_1_1_racing_env_a4ced3c7d29e403744cbf67ebab5b7f0a}\index{racing\_env.RacingEnv@{racing\_env.RacingEnv}!show\_vision@{show\_vision}}
+\index{show\_vision@{show\_vision}!racing\_env.RacingEnv@{racing\_env.RacingEnv}}
+\doxysubsubsection{\texorpdfstring{show\_vision}{show\_vision}}
+{\footnotesize\ttfamily \label{classracing__env_1_1_racing_env_a4ced3c7d29e403744cbf67ebab5b7f0a} 
+racing\+\_\+env.\+Racing\+Env.\+show\+\_\+vision = show\+\_\+vision}
+
+\Hypertarget{classracing__env_1_1_racing_env_acb1a699a9be9c7098f639113affddcdf}\index{racing\_env.RacingEnv@{racing\_env.RacingEnv}!track@{track}}
+\index{track@{track}!racing\_env.RacingEnv@{racing\_env.RacingEnv}}
+\doxysubsubsection{\texorpdfstring{track}{track}}
+{\footnotesize\ttfamily \label{classracing__env_1_1_racing_env_acb1a699a9be9c7098f639113affddcdf} 
+racing\+\_\+env.\+Racing\+Env.\+track = \mbox{\hyperlink{classtrack_1_1_track}{Track}}(\mbox{\hyperlink{classracing__env_1_1_racing_env_a9439afc5b363a911b44c11d8dca05880}{map\+\_\+name}}, with\+\_\+images=with\+\_\+images)}
+
+\Hypertarget{classracing__env_1_1_racing_env_abb7b542ba974fd4713438cbd0bb6f76a}\index{racing\_env.RacingEnv@{racing\_env.RacingEnv}!vehicle@{vehicle}}
+\index{vehicle@{vehicle}!racing\_env.RacingEnv@{racing\_env.RacingEnv}}
+\doxysubsubsection{\texorpdfstring{vehicle}{vehicle}}
+{\footnotesize\ttfamily \label{classracing__env_1_1_racing_env_abb7b542ba974fd4713438cbd0bb6f76a} 
+racing\+\_\+env.\+Racing\+Env.\+vehicle = \mbox{\hyperlink{classvehicule__class_1_1_vehicule}{Vehicule}}(10, 0.\+3, self.\+track.\+get\+\_\+track()\mbox{[}0\mbox{]}, vision\+\_\+active=True)}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{racing__env_8py}{racing\+\_\+env.\+py}}\end{DoxyCompactItemize}

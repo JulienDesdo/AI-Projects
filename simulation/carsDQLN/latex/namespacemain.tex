@@ -1,0 +1,132 @@
+\doxysection{main Namespace Reference}
+\hypertarget{namespacemain}{}\label{namespacemain}\index{main@{main}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacemain_afdb91f21ace4e8aa76b7cfa8932e2d55}{resize\+\_\+and\+\_\+center\+\_\+image}} (image, target\+\_\+width, target\+\_\+height)
+\item 
+\mbox{\hyperlink{namespacemain_a5ddb3d5a115855e87d6cb66eccd0049f}{run\+\_\+game}} (map\+\_\+name, \mbox{\hyperlink{namespacemain_a91270e2576422db8bc835d337b054654}{mode}}, \mbox{\hyperlink{namespacemain_af46937bd17d651048969f170ca275452}{show\+\_\+vision}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+str \mbox{\hyperlink{namespacemain_a3b065ce5de47dc5af0ef1045ebb8d1cd}{MODEL\+\_\+\+PATH}} = "{}racing\+\_\+agent.\+zip"{}
+\item 
+\mbox{\hyperlink{namespacemain_a3492c3460d3b1a7a0bd088f90f8e0c79}{screen}} = pygame.\+display.\+set\+\_\+mode((1280, 720))
+\item 
+\mbox{\hyperlink{namespacemain_aacf1f7fe8ef30ab56f7da7f1e85a597e}{menu}} = \mbox{\hyperlink{classmenu_1_1_menu}{Menu}}(\mbox{\hyperlink{namespacemain_a3492c3460d3b1a7a0bd088f90f8e0c79}{screen}})
+\item 
+\mbox{\hyperlink{namespacemain_a0819ab8a1f3a98b7beac7e2a02813ae7}{selected\+\_\+map}}
+\item 
+\mbox{\hyperlink{namespacemain_a91270e2576422db8bc835d337b054654}{mode}}
+\item 
+\mbox{\hyperlink{namespacemain_af46937bd17d651048969f170ca275452}{show\+\_\+vision}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}@file main.py
+@brief Script principal pour lancer la simulation de course avec Pygame.
+
+@details
+Ce script permet :
+- De lancer la simulation en mode joueur.
+- De tester un modèle IA déjà entraîné.
+- D'entraîner un nouvel agent IA via Stable-Baselines3.
+
+@dependencies:
+- pygame
+- numpy
+- menu (Menu)
+- track (Track)
+- vehicule_class (Vehicule)
+- train_agent (train_model)
+- test_agent (test_model)
+
+@functions:
+    - resize_and_center_image: Redimensionne et centre l'image du véhicule.
+    - run_game: Exécute la boucle principale du jeu selon le mode choisi.
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacemain_afdb91f21ace4e8aa76b7cfa8932e2d55}\index{main@{main}!resize\_and\_center\_image@{resize\_and\_center\_image}}
+\index{resize\_and\_center\_image@{resize\_and\_center\_image}!main@{main}}
+\doxysubsubsection{\texorpdfstring{resize\_and\_center\_image()}{resize\_and\_center\_image()}}
+{\footnotesize\ttfamily \label{namespacemain_afdb91f21ace4e8aa76b7cfa8932e2d55} 
+main.\+resize\+\_\+and\+\_\+center\+\_\+image (\begin{DoxyParamCaption}\item[{}]{image}{, }\item[{}]{target\+\_\+width}{, }\item[{}]{target\+\_\+height}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Redimensionne une image sans déformation et la centre dans un cadre donné.
+
+@param image pygame.Surface: Image source.
+@param target_width int: Largeur cible du cadre.
+@param target_height int: Hauteur cible du cadre.
+
+@return pygame.Surface: Image redimensionnée et centrée.
+
+@details
+- Le ratio hauteur est conservé.
+- L'image est centrée horizontalement dans la surface retournée.
+\end{DoxyVerb}
+ \Hypertarget{namespacemain_a5ddb3d5a115855e87d6cb66eccd0049f}\index{main@{main}!run\_game@{run\_game}}
+\index{run\_game@{run\_game}!main@{main}}
+\doxysubsubsection{\texorpdfstring{run\_game()}{run\_game()}}
+{\footnotesize\ttfamily \label{namespacemain_a5ddb3d5a115855e87d6cb66eccd0049f} 
+main.\+run\+\_\+game (\begin{DoxyParamCaption}\item[{}]{map\+\_\+name}{, }\item[{}]{mode}{, }\item[{}]{show\+\_\+vision}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Lance la simulation, le test ou l'entraînement en fonction du mode choisi.
+
+@param map_name str: Nom de la carte sélectionnée (ex: "Map 1").
+@param mode str: Mode choisi parmi ["Joueur", "TEST", "ENTRAÎNEMENT"].
+@param show_vision bool: Active/désactive l'affichage des capteurs de vision.
+
+@return None
+
+@details
+- Si mode == "ENTRAÎNEMENT" : entraîne l'IA (ferme la fenêtre Pygame puis appelle train_model()).
+- Si mode == "TEST" : teste un modèle pré-entraîné (test_model()).
+- Sinon : lance la course en mode joueur.
+
+@note
+- Le modèle est sauvegardé sous le nom 'racing_agent.zip' par défaut.
+- Si aucun modèle n'existe pour le mode TEST, une erreur est affichée.
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespacemain_aacf1f7fe8ef30ab56f7da7f1e85a597e}\index{main@{main}!menu@{menu}}
+\index{menu@{menu}!main@{main}}
+\doxysubsubsection{\texorpdfstring{menu}{menu}}
+{\footnotesize\ttfamily \label{namespacemain_aacf1f7fe8ef30ab56f7da7f1e85a597e} 
+main.\+menu = \mbox{\hyperlink{classmenu_1_1_menu}{Menu}}(\mbox{\hyperlink{namespacemain_a3492c3460d3b1a7a0bd088f90f8e0c79}{screen}})}
+
+\Hypertarget{namespacemain_a91270e2576422db8bc835d337b054654}\index{main@{main}!mode@{mode}}
+\index{mode@{mode}!main@{main}}
+\doxysubsubsection{\texorpdfstring{mode}{mode}}
+{\footnotesize\ttfamily \label{namespacemain_a91270e2576422db8bc835d337b054654} 
+main.\+mode}
+
+\Hypertarget{namespacemain_a3b065ce5de47dc5af0ef1045ebb8d1cd}\index{main@{main}!MODEL\_PATH@{MODEL\_PATH}}
+\index{MODEL\_PATH@{MODEL\_PATH}!main@{main}}
+\doxysubsubsection{\texorpdfstring{MODEL\_PATH}{MODEL\_PATH}}
+{\footnotesize\ttfamily \label{namespacemain_a3b065ce5de47dc5af0ef1045ebb8d1cd} 
+str main.\+MODEL\+\_\+\+PATH = "{}racing\+\_\+agent.\+zip"{}}
+
+\Hypertarget{namespacemain_a3492c3460d3b1a7a0bd088f90f8e0c79}\index{main@{main}!screen@{screen}}
+\index{screen@{screen}!main@{main}}
+\doxysubsubsection{\texorpdfstring{screen}{screen}}
+{\footnotesize\ttfamily \label{namespacemain_a3492c3460d3b1a7a0bd088f90f8e0c79} 
+main.\+screen = pygame.\+display.\+set\+\_\+mode((1280, 720))}
+
+\Hypertarget{namespacemain_a0819ab8a1f3a98b7beac7e2a02813ae7}\index{main@{main}!selected\_map@{selected\_map}}
+\index{selected\_map@{selected\_map}!main@{main}}
+\doxysubsubsection{\texorpdfstring{selected\_map}{selected\_map}}
+{\footnotesize\ttfamily \label{namespacemain_a0819ab8a1f3a98b7beac7e2a02813ae7} 
+main.\+selected\+\_\+map}
+
+\Hypertarget{namespacemain_af46937bd17d651048969f170ca275452}\index{main@{main}!show\_vision@{show\_vision}}
+\index{show\_vision@{show\_vision}!main@{main}}
+\doxysubsubsection{\texorpdfstring{show\_vision}{show\_vision}}
+{\footnotesize\ttfamily \label{namespacemain_af46937bd17d651048969f170ca275452} 
+main.\+show\+\_\+vision}
+
